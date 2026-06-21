@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第九章 相变 — 热学笔记</title>
+<script>
+MathJax = {tex: {inlineMath: [['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --bg: #f8f9fa; --card: #ffffff; --accent: #2563eb;
+  --accent2: #dbeafe; --text: #1e293b; --muted: #64748b;
+  --border: #e2e8f0; --green: #059669; --orange: #ea580c;
+  --purple: #7c3aed; --pink: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+h1 {
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+.subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+h2 {
+  font-size: 1.35rem; font-weight: 600; color: var(--accent);
+  margin: 2rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent2);
+}
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.6rem; }
+.card {
+  background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem;
+  margin: 0.8rem 0; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.key-point { border-left: 4px solid var(--accent); background: var(--accent2); }
+.key-point strong { color: var(--accent); }
+.important { border-left: 4px solid var(--green); background: #ecfdf5; }
+.important strong { color: var(--green); }
+.formula-box {
+  background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem;
+  margin: 0.6rem 0; overflow-x: auto;
+}
+.formula-box .label {
+  font-size: 0.78rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.92rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--accent2); font-weight: 600; color: var(--accent); }
+ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+.tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+}
+.tag-blue { background: var(--accent2); color: var(--accent); }
+.tag-green { background: #ecfdf5; color: var(--green); }
+.tag-orange { background: #fff7ed; color: var(--orange); }
+.tag-purple { background: #f5f3ff; color: var(--purple); }
+.tag-pink { background: #fdf2f8; color: var(--pink); }
+p { margin: 0.5rem 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+.footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+.small { font-size: 0.85rem; color: var(--muted); }
+.page-ref {
+  display: inline-block; background: #eef2ff; color: var(--accent);
+  border-radius: 4px; padding: 0 0.4rem; font-size: 0.82rem; font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>第九章 相变</h1>
+<p class="subtitle">李椿·章立源·钱尚武《热学》 — 期末补热学笔记</p>
+
+<!-- ==================== 概述 ==================== -->
+<h2>概述 <span class="page-ref">p327</span></h2>
+<div class="card">
+<p><strong>相</strong>是系统中物理性质和化学组成完全均匀的部分。不同相之间的转变称为<strong>相变</strong>。常见的相变有：汽化、凝结、熔化、凝固、升华、凝华等。</p>
+</div>
+
+<!-- ==================== §1 ==================== -->
+<h2>§1 相和相变 <span class="page-ref">p327-332</span></h2>
+
+<div class="card key-point">
+<h3>基本概念 <span class="page-ref">p327-329</span></h3>
+<ul>
+<li><strong>相</strong>：系统中性质均匀的部分（固相、液相、气相）</li>
+<li><strong>单元系</strong>：单一组分的系统</li>
+<li><strong>多元系</strong>：多组分的系统</li>
+<li><strong>相变</strong>：物质从一相转变为另一相的过程</li>
+<li><strong>一级相变</strong>：有体积变化和潜热（如汽化、熔化、升华）</li>
+<li><strong>二级相变</strong>：无体积变化和潜热，热容等发生突变（如超导转变）</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>相变分类 <span class="page-ref">p330-332</span></h3>
+<table>
+<tr><th>类型</th><th>体积变化 $\Delta V$</th><th>潜热 $L$</th><th>实例</th></tr>
+<tr><td><strong>一级相变</strong></td><td>$\neq 0$</td><td>$\neq 0$</td><td>汽化、熔化、升华</td></tr>
+<tr><td><strong>二级相变</strong></td><td>$= 0$</td><td>$= 0$</td><td>超导、He I-He II 转变</td></tr>
+</table>
+<p>一级相变：化学势连续，一阶偏导不连续</p>
+<p>二级相变：化学势和一阶偏导连续，二阶偏导不连续</p>
+</div>
+
+<!-- ==================== §2 ==================== -->
+<h2>§2 汽化 <span class="page-ref">p332-340</span></h2>
+
+<div class="card">
+<h3>一、蒸发 <span class="page-ref">p332-335</span></h3>
+<ul>
+<li>液体表面的分子克服分子间引力进入气相的过程</li>
+<li><strong>汽化热</strong>（潜热）：单位质量液体汽化所需吸收的热量</li>
+<li>汽化热随温度升高而减小（$T \to T_c$ 时 $L \to 0$）</li>
+<li><strong>动态平衡</strong>：密闭容器中，蒸发与凝结速率相等时形成饱和蒸气</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>二、饱和蒸气压 <span class="page-ref">p335-338</span></h3>
+<p>饱和蒸气压是温度的函数，与液体种类有关，与容器体积无关。</p>
+<ul>
+<li>温度越高，饱和蒸气压越大</li>
+<li>同温度下，汽化热大的液体饱和蒸气压小</li>
+<li>弯曲液面的饱和蒸气压不同于平液面（开尔文公式）</li>
+</ul>
+</div>
+
+<h3>三、沸腾 <span class="page-ref">p338-340</span></h3>
+<div class="card">
+<p>沸腾条件：饱和蒸气压 = 外界压强</p>
+<ul>
+<li>沸点随外界压强增大而升高</li>
+<li>高压锅原理：提高压强 → 提高沸点 → 加快烹饪</li>
+<li>高山上沸点降低：气压低 → 水在 80-90°C 就沸腾</li>
+</ul>
+</div>
+
+<!-- ==================== §3 ==================== -->
+<h2>§3 克拉珀龙方程 <span class="page-ref">p340-346</span></h2>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 克拉珀龙方程</div>
+$$\frac{dp}{dT} = \frac{L}{T(v_2 - v_1)}$$
+</div>
+<p>描述两相平衡曲线上压强随温度的变化率：</p>
+<ul>
+<li>$L$ — 相变潜热（J/kg）</li>
+<li>$T$ — 相变温度（K）</li>
+<li>$v_1, v_2$ — 两相的比容（m³/kg）</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>应用 <span class="page-ref">p342-346</span></h3>
+<ul>
+<li><strong>汽化线</strong>：$v_2 \gg v_1$，$\dfrac{dp}{dT} > 0$，且较大</li>
+<li><strong>熔解线</strong>：$v_2 \approx v_1$，$\dfrac{dp}{dT}$ 较小（水例外，$v_2 < v_1$ 故 $dp/dT < 0$）</li>
+<li><strong>升华线</strong>：$v_2 \gg v_1$，类似汽化线</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>克劳修斯-克拉珀龙方程（对汽化线的近似）</h3>
+<div class="formula-box">
+$$\frac{dp}{dT} = \frac{Lp}{RT^2}$$
+$$p = p_0\;e^{-L/(RT)}$$
+</div>
+<p>适用于气相近似为理想气体且 $v_2 \gg v_1$ 的情形。</p>
+</div>
+
+<!-- ==================== §4 ==================== -->
+<h2>§4 熔化与凝固 <span class="page-ref">p346-352</span></h2>
+
+<div class="card">
+<h3>熔化 <span class="page-ref">p346-348</span></h3>
+<ul>
+<li><strong>熔点</strong>：晶体熔化的温度（对给定压强）</li>
+<li><strong>熔解热</strong>：单位质量晶体熔化所需吸收的热量</li>
+<li>大多数物质熔化时体积膨胀（$\Delta V > 0$），少数（如水、铋）体积收缩</li>
+<li>熔点随压强变化由克拉珀龙方程决定</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>凝固 <span class="page-ref">p348-352</span></h3>
+<ul>
+<li>过冷现象：液体温度低于凝固点仍不凝固（亚稳态）</li>
+<li>结晶需要凝结核</li>
+<li>过冷度越大，结晶速度越快</li>
+</ul>
+</div>
+
+<!-- ==================== §5 ==================== -->
+<h2>§5 相图 <span class="page-ref">p352-358</span></h2>
+
+<div class="card important">
+<h3>单元系相图 <span class="page-ref">p352-355</span></h3>
+<p>以 $p$-$T$ 图表示：</p>
+<ul>
+<li><strong>汽化线</strong>：液-气平衡（止于临界点）</li>
+<li><strong>熔解线</strong>：固-液平衡</li>
+<li><strong>升华线</strong>：固-气平衡</li>
+<li><strong>三相点</strong>：三条平衡线的交点，固、液、气三相共存</li>
+<li><strong>临界点</strong>：汽化线的终点，超过该点液气不可区分</li>
+</ul>
+</div>
+
+<div class="card key-point">
+<h3>水的相图 <span class="page-ref">p354-355</span></h3>
+<div class="formula-box">
+<p><strong>三相点</strong>：$T_3 = 273.16\; \text{K}$（$0.01^\circ\text{C}$），$p_3 = 611\; \text{Pa}$</p>
+<p><strong>临界点</strong>：$T_c = 647\; \text{K}$（$374^\circ\text{C}$），$p_c = 22.1\; \text{MPa}$</p>
+</div>
+<p>水的熔解线斜率为负（$\frac{dp}{dT} < 0$），因为冰比水轻（$v_{\text{固}} > v_{\text{液}}$）。</p>
+</div>
+
+<div class="card">
+<h3>范德瓦耳斯等温线与相变 <span class="page-ref">p355-358</span></h3>
+<p>范德瓦耳斯方程在低于临界温度时给出 $p$-$V$ 曲线上的"波折"部分，对应气液两相区。用<strong>麦克斯韦等面积法则</strong>确定实际相变压强：</p>
+<div class="formula-box">
+$$\oint V\,dp = 0$$
+</div>
+</div>
+
+<!-- ==================== §6 ==================== -->
+<h2>§6 临界现象 <span class="page-ref">p358-364</span></h2>
+
+<div class="card">
+<h3>临界点性质 <span class="page-ref">p358-361</span></h3>
+<ul>
+<li>临界温度 $T_c$ 以上，气体不能液化</li>
+<li>临界点处，气液两相差别消失</li>
+<li>临界点附近出现<strong>临界乳光</strong>（密度涨落导致强烈散射）</li>
+</ul>
+</div>
+
+<!-- ==================== 核心公式 ==================== -->
+<h2>本章核心公式速查</h2>
+
+<div class="card">
+<ol>
+<li><strong>克拉珀龙方程</strong>：$\displaystyle\frac{dp}{dT} = \frac{L}{T(v_2 - v_1)}$ <span class="page-ref">p342</span></li>
+<li><strong>克劳修斯-克拉珀龙方程</strong>：$\displaystyle\frac{dp}{dT} = \frac{Lp}{RT^2}$ <span class="page-ref">p344</span></li>
+<li><strong>蒸气压公式</strong>：$p = p_0 e^{-L/(RT)}$ <span class="page-ref">p345</span></li>
+<li><strong>麦克斯韦等面积法则</strong>：$\displaystyle\oint V\,dp = 0$ <span class="page-ref">p357</span></li>
+<li><strong>三相点（水）</strong>：$T_3 = 273.16$ K, $p_3 = 611$ Pa <span class="page-ref">p354</span></li>
+<li><strong>临界点（水）</strong>：$T_c = 647$ K, $p_c = 22.1$ MPa <span class="page-ref">p355</span></li>
+</ol>
+</div>
+
+<!-- ==================== 习题 ==================== -->
+<h2>习题导航 <span class="page-ref">p364-370</span></h2>
+
+<div class="grid2">
+<div class="card">
+<span class="tag tag-blue">汽化热</span> 1-5题
+<p class="small">汽化热计算、蒸发速率</p>
+</div>
+<div class="card">
+<span class="tag tag-green">克拉珀龙方程</span> 6-12题
+<p class="small">相平衡曲线斜率的计算</p>
+</div>
+<div class="card">
+<span class="tag tag-orange">相图</span> 13-17题
+<p class="small">相图分析、三相点、临界点</p>
+</div>
+<div class="card">
+<span class="tag tag-purple">熔化/凝固</span> 18-22题
+<p class="small">熔点与压强关系、过冷</p>
+</div>
+<div class="card">
+<span class="tag tag-pink">综合</span> 23-26题
+<p class="small">相变综合计算</p>
+</div>
+<div class="card">
+<span class="tag tag-blue">概念</span> 思考题1-14题
+<p class="small">p358-363，相、相变、临界现象</p>
+</div>
+</div>
+
+<div class="footer">
+笔记生成于 2026年6月14日 · 教材：李椿·章立源·钱尚武《热学》人民教育出版社
+</div>
+
+</div>
+
+</body>
+</html>

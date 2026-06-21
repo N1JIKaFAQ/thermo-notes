@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第一章 温度 — 热学笔记</title>
+<script>
+MathJax = {tex: {inlineMath: [['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --bg: #f8f9fa;
+  --card: #ffffff;
+  --accent: #2563eb;
+  --accent2: #dbeafe;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --green: #059669;
+  --orange: #ea580c;
+  --purple: #7c3aed;
+  --pink: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+h1 {
+  font-size: 2.2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+.subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+h2 {
+  font-size: 1.4rem; font-weight: 600; color: var(--accent);
+  margin: 2rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent2);
+}
+h3 {
+  font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.6rem;
+  color: var(--text);
+}
+h3 .sec { color: var(--accent); }
+.card {
+  background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem;
+  margin: 0.8rem 0; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.key-point {
+  border-left: 4px solid var(--accent); background: var(--accent2);
+}
+.key-point strong { color: var(--accent); }
+.important {
+  border-left: 4px solid var(--green); background: #ecfdf5;
+}
+.important strong { color: var(--green); }
+.formula-box {
+  background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem;
+  margin: 0.6rem 0; font-size: 1.05rem;
+  overflow-x: auto;
+}
+.formula-box .label {
+  font-size: 0.78rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+table {
+  width: 100%; border-collapse: collapse; margin: 0.8rem 0;
+  font-size: 0.92rem;
+}
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--accent2); font-weight: 600; color: var(--accent); }
+ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+.tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+}
+.tag-blue { background: var(--accent2); color: var(--accent); }
+.tag-green { background: #ecfdf5; color: var(--green); }
+.tag-orange { background: #fff7ed; color: var(--orange); }
+.tag-purple { background: #f5f3ff; color: var(--purple); }
+.tag-pink { background: #fdf2f8; color: var(--pink); }
+p { margin: 0.5rem 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+.footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+.small { font-size: 0.85rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>第一章 温度</h1>
+<p class="subtitle">李椿·章立源·钱尚武《热学》 — 期末补热学笔记</p>
+
+<!-- ==================== §1 ==================== -->
+<h2>§1 平衡态 状态参量</h2>
+
+<div class="card key-point">
+<strong>平衡态</strong>：在不受外界影响的条件下，系统宏观性质不随时间变化的状态。<br>
+本质是<strong>热动平衡</strong>——分子永不停息运动，但平均效果不变。平衡态是理想概念。
+</div>
+
+<div class="card">
+<h3>状态参量（四类）</h3>
+<table>
+<tr><th>类型</th><th>举例</th><th>符号</th></tr>
+<tr><td>几何参量</td><td>体积</td><td>$V$</td></tr>
+<tr><td>力学参量</td><td>压强</td><td>$p$</td></tr>
+<tr><td>化学参量</td><td>摩尔数、浓度</td><td>$\nu$</td></tr>
+<tr><td>电磁参量</td><td>电场强度、磁化强度</td><td>$E, M$</td></tr>
+</table>
+<p>一定质量的化学纯气体，用 <strong>$p$, $V$</strong> 即可完全描述。</p>
+</div>
+
+<!-- ==================== §2 ==================== -->
+<h2>§2 温度</h2>
+
+<div class="card key-point">
+<h3>热力学第零定律</h3>
+<p>若 A 与 B 热平衡，A 与 C 热平衡 → <strong>B 与 C 也热平衡</strong>。</p>
+<p>→ <strong>温度</strong>的定义：决定系统是否与其他系统处于热平衡的宏观性质。</p>
+<p>互为热平衡的系统 <strong>温度相同</strong>。</p>
+<p class="small">（在附录 1-1 中给出了严格的数学推导）</p>
+</div>
+
+<h3>温标三要素</h3>
+<div class="card">
+<ol>
+<li><strong>测温物质</strong>（水银、铂电阻、气体……）</li>
+<li><strong>测温属性</strong>（液柱长度、电阻值、压强……）</li>
+<li><strong>固定点</strong> + 刻度规定</li>
+</ol>
+</div>
+
+<h3>标准固定点：水的三相点</h3>
+<div class="card important">
+<p><strong>水的三相点</strong> = 纯冰 + 纯水 + 水蒸气 平衡共存</p>
+<p>温度严格规定为 <strong>273.16 K</strong></p>
+<p class="small">（附录 1-2 介绍了实现三相点的实验装置）</p>
+</div>
+
+<h3>四种温标</h3>
+<div class="card">
+<table>
+<tr><th>温标</th><th>符号</th><th>单位</th><th>定义</th></tr>
+<tr><td>理想气体温标</td><td>$T$</td><td>K</td><td>$T = 273.16 \cdot \dfrac{p}{p_{\text{tr}}}$（取$p_{\text{tr}}\to0$极限）</td></tr>
+<tr><td>热力学温标</td><td>$T$</td><td>K</td><td>最基础温标，与气体温标在适用范围内一致</td></tr>
+<tr><td>摄氏温标</td><td>$t$</td><td>°C</td><td>$t = T - 273.15$</td></tr>
+<tr><td>华氏温标</td><td>$t_F$</td><td>°F</td><td>$t_F = 32 + \dfrac{9}{5}t$</td></tr>
+</table>
+</div>
+
+<div class="formula-box">
+<div class="label">★ 理想气体温标（定容气体温度计）</div>
+$$T = \lim_{p_{\text{tr}}\to 0} 273.16\,\text{K} \cdot \frac{p}{p_{\text{tr}}}$$
+</div>
+
+<div class="formula-box">
+<div class="label">★ 摄氏 ↔ 开尔文</div>
+$$t(^\circ\text{C}) = T(\text{K}) - 273.15$$
+</div>
+
+<h3>理想气体温标的实现</h3>
+<div class="card">
+<p>用四种不同气体做实验，测汽点温度 $T(p_s)$ 对 $p_{\text{tr}}$ 作图，外推到 $p_{\text{tr}}\to0$，不同气体的温标趋于同一极限值 <strong>373.15 K</strong>。</p>
+<p>这个极限温标就是 <strong>理想气体温标</strong>，与热力学温标一致。</p>
+</div>
+
+<div class="card">
+<h3>气体温度计</h3>
+<ul>
+<li><strong>定容</strong>：V 不变，p 随 T 变 → $T = 273.16 \cdot p/p_{\text{tr}}$</li>
+<li><strong>定压</strong>：p 不变，V 随 T 变 → $T = 273.16 \cdot V/V_{\text{tr}}$</li>
+</ul>
+<p>两者的极限（$p\to0$）给出相同的温标。</p>
+</div>
+
+<div class="card">
+<p><strong>理想气体温标局限性</strong>：最低 1 K（氦液化点），最高约 1000°C。极低温不适用。</p>
+</div>
+
+<!-- ==================== §3 ==================== -->
+<h2>§3 气体的状态方程</h2>
+
+<h3>3.1 理想气体状态方程</h3>
+
+<div class="card">
+<p>由三条实验定律导出：</p>
+<ul>
+<li><strong>玻意耳定律</strong>（Boyle）：$T$不变 → $pV = C$</li>
+<li><strong>盖·吕萨克定律</strong>：$p$不变 → $V = V_0(1 + \alpha_v t)$，$\alpha_v = 1/273.15$</li>
+<li><strong>查理定律</strong>（Charles）：$V$不变 → $p = p_0(1 + \alpha_p t)$，$\alpha_p = 1/273.15$</li>
+</ul>
+</div>
+
+<div class="card important">
+<div class="formula-box" style="background: transparent; padding: 0; margin: 0;">
+<div class="label">★★★ 核心公式 — 理想气体状态方程</div>
+$$pV = \nu RT = \frac{M}{\mu}RT$$
+</div>
+<table>
+<tr><th>符号</th><th>含义</th><th>常用单位</th></tr>
+<tr><td>$p$</td><td>压强</td><td>atm 或 Pa</td></tr>
+<tr><td>$V$</td><td>体积</td><td>L 或 m³</td></tr>
+<tr><td>$\nu$</td><td>摩尔数 $\nu = M/\mu$</td><td>mol</td></tr>
+<tr><td>$M$</td><td>气体质量</td><td>kg 或 g</td></tr>
+<tr><td>$\mu$</td><td>摩尔质量</td><td>kg/mol（数值上 = 分子量）</td></tr>
+<tr><td>$R$</td><td>普适气体常数</td><td>见下方</td></tr>
+<tr><td>$T$</td><td>热力学温度</td><td>K</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>R 的取值（按单位选）</h3>
+<table>
+<tr><th>单位制</th><th>$R$ 数值</th></tr>
+<tr><td>国际单位制（p: Pa, V: m³）</td><td>$R = 8.314\ \text{J}\cdot\text{mol}^{-1}\cdot\text{K}^{-1}$</td></tr>
+<tr><td>常用（p: atm, V: L）</td><td>$R = 0.08206\ \text{atm}\cdot\text{L}\cdot\text{mol}^{-1}\cdot\text{K}^{-1}$</td></tr>
+<tr><td>书上例题近似</td><td>$R = 8.21 \times 10^{-2}\ \text{atm}\cdot\text{L}\cdot\text{mol}^{-1}\cdot\text{K}^{-1}$</td></tr>
+</table>
+</div>
+
+<div class="card key-point">
+<h3>阿伏伽德罗定律</h3>
+<p>同温同压下，等摩尔数的任何气体体积相同。</p>
+<p>标准状况（STP: $0^\circ\text{C}$, 1 atm）下，1 mol 气体体积 = <strong>22.4 L</strong></p>
+</div>
+
+<div class="formula-box">
+<div class="label">★ 密度公式</div>
+$$\rho = \frac{M}{V} = \frac{p\mu}{RT}$$
+</div>
+
+<h3>3.2 混合理想气体</h3>
+
+<div class="card important">
+<h3>道耳顿分压定律</h3>
+$$p_{\text{总}} = p_1 + p_2 + \cdots + p_n$$
+<p>某组分分压 = 该组分单独存在（同 T 同 V）时的压强。</p>
+<p>混合气体状态方程：$pV = \nu RT$，其中 $\nu = \nu_1 + \nu_2 + \cdots$</p>
+</div>
+
+<div class="formula-box">
+<div class="label">★ 平均摩尔质量</div>
+$$\mu_{\text{avg}} = \frac{M_{\text{总}}}{\nu_{\text{总}}}$$
+<p>例：空气（N₂ 76.9%, O₂ 23.1%）→ $\mu_{\text{avg}} \approx 28.9\ \text{g/mol}$</p>
+</div>
+
+<h3>3.3 非理想气体 — 范德瓦耳斯方程</h3>
+
+<div class="card important">
+<div class="formula-box" style="background: transparent; padding: 0; margin: 0;">
+<div class="label">★ 对 1 摩尔气体</div>
+$$\left(p + \frac{a}{v^2}\right)(v - b) = RT$$
+</div>
+<table>
+<tr><th>参数</th><th>含义</th><th>典型值（CO₂）</th></tr>
+<tr><td>$a$</td><td>修正分子间吸引力</td><td>3.592 atm·L²·mol⁻²</td></tr>
+<tr><td>$b$</td><td>修正分子本身体积</td><td>0.04267 L·mol⁻¹</td></tr>
+</table>
+<p class="small">a 和 b 的数值见教材表 1-2，不同气体不同。</p>
+</div>
+
+<div class="card">
+<h3>例题 5 的解法示范</h3>
+<p>将方程改写为：</p>
+$$p = \frac{RT}{v - b} - \frac{a}{v^2}$$
+<p>代入 $T, v, a, b$ 即可求出压强 $p$。</p>
+</div>
+
+<div class="formula-box">
+<div class="label">对任意质量气体（质量 M，总体积 V）</div>
+$$\left[ p + \frac{M^2}{\mu^2}\frac{a}{V^2} \right] \left[ V - \frac{M}{\mu}b \right] = \frac{M}{\mu}RT$$
+</div>
+
+<h3>3.4 昂尼斯方程（维里展开）</h3>
+<div class="card">
+$$pv = A + Bp + Cp^2 + Dp^3 + \cdots$$
+<p>$A = RT$，$B, C, D\cdots$ 叫 <strong>维里系数</strong>，是温度的函数。</p>
+<p class="small">也可以写成 $pv = A + B_v/v + C_v/v^2 + D_v/v^3 + \cdots$，两种形式可互相转换。</p>
+</div>
+
+<div class="card">
+<p>范德瓦耳斯方程也可以展开成维里形式：</p>
+$$pv = RT + \frac{(RTb - a)}{v} + \frac{RTb^2}{v^2} + \cdots$$
+</div>
+
+<!-- ==================== 习题分类 ==================== -->
+<h2>习题分类导航（共 33 道）</h2>
+
+<div class="grid2">
+
+<div class="card">
+<span class="tag tag-blue">温标温度计</span> 第 1-11 题
+<p class="small">温标换算、定容气体温度计、铂电阻、热电偶</p>
+</div>
+
+<div class="card">
+<span class="tag tag-green">pV=νRT 直接算</span> 第 12-19 题
+<p class="small">理想气体状态方程、U形管、水银柱</p>
+</div>
+
+<div class="card">
+<span class="tag tag-orange">密度/漏气/打气</span> 第 20-22 题
+<p class="small">ρ=pμ/RT、漏气质量、打气次数</p>
+</div>
+
+<div class="card">
+<span class="tag tag-purple">综合装置</span> 第 23-26 题
+<p class="small">麦克劳压力计、容积计、抽气机</p>
+</div>
+
+<div class="card">
+<span class="tag tag-pink">混合气体</span> 第 27-29 题
+<p class="small">道耳顿分压、饱和蒸汽压</p>
+</div>
+
+<div class="card">
+<span class="tag tag-blue">范德瓦耳斯</span> 第 30-33 题
+<p class="small">内压强计算、Van der Waals 与理想气体对比</p>
+</div>
+
+</div>
+
+<!-- ==================== 速查卡 ==================== -->
+<h2>做题速查卡</h2>
+
+<div class="card">
+<ol>
+<li><strong>pV = νRT = (M/μ)RT</strong> ← 最重要的公式</li>
+<li>R = 8.314（Pa·m³）或 0.08206（atm·L）</li>
+<li>T(K) = t(°C) + 273.15</li>
+<li>ρ = pμ/(RT)</li>
+<li>T = 273.16·p/p_tr（理想气体温标）</li>
+<li>p总 = p₁ + p₂ + ...（道耳顿分压）</li>
+<li>(p + a/v²)(v - b) = RT（范德瓦耳斯）</li>
+<li>t_F = 32 + (9/5)t（华氏温标）</li>
+</ol>
+</div>
+
+<!-- ==================== 附录 ==================== -->
+<h2>附录</h2>
+
+<div class="card">
+<h3>附录 1-1 热力学第零定律与温度（数学推导）</h3>
+<p>教材中用三个系统的状态参量函数严格证明了：互为热平衡的系统具有一个数值相等的状态函数 $f(p,V)$，定义为温度。即从 $F_{AB}=0$ 和 $F_{AC}=0$ 推出 $f_A(p_A,V_A)=f_B(p_B,V_B)=f_C(p_C,V_C)$。</p>
+</div>
+
+<div class="card">
+<h3>附录 1-2 水的三相点管</h3>
+<p>利用"溶液结冰时先析出纯溶剂"的原理，在三相点管中围绕温度计管外壁形成纯冰层，实现纯冰+纯水+水蒸气的三相平衡。用于校正温度计。</p>
+</div>
+
+<div class="card">
+<h3>书上例题一览</h3>
+<table>
+<tr><th>例题</th><th>类型</th><th>核心方法</th></tr>
+<tr><td>例 1</td><td>测分子量（CCl₄）</td><td>$\mu = MRT/pV$</td></tr>
+<tr><td>例 2</td><td>漏气问题（氧气）</td><td>用 pV=νRT 分前后两次算质量差</td></tr>
+<tr><td>例 3</td><td>低温气体温度计</td><td>测温泡+压力计系统，列状态方程联立</td></tr>
+<tr><td>例 4</td><td>混合气体分压+密度</td><td>道耳顿分压 + ρ=pμ/RT</td></tr>
+<tr><td>例 5</td><td>范德瓦耳斯方程算压强</td><td>$p=RT/(v-b)-a/v²$</td></tr>
+</table>
+</div>
+
+<div class="footer">
+笔记生成于 2026年6月14日 · 教材：李椿·章立源·钱尚武《热学》人民教育出版社
+</div>
+
+</div>
+
+</body>
+</html>

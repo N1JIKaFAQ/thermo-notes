@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第八章 液体 — 热学笔记</title>
+<script>
+MathJax = {tex: {inlineMath: [['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --bg: #f8f9fa; --card: #ffffff; --accent: #2563eb;
+  --accent2: #dbeafe; --text: #1e293b; --muted: #64748b;
+  --border: #e2e8f0; --green: #059669; --orange: #ea580c;
+  --purple: #7c3aed; --pink: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+h1 {
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+.subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+h2 {
+  font-size: 1.35rem; font-weight: 600; color: var(--accent);
+  margin: 2rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent2);
+}
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.6rem; }
+.card {
+  background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem;
+  margin: 0.8rem 0; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.key-point { border-left: 4px solid var(--accent); background: var(--accent2); }
+.key-point strong { color: var(--accent); }
+.important { border-left: 4px solid var(--green); background: #ecfdf5; }
+.important strong { color: var(--green); }
+.formula-box {
+  background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem;
+  margin: 0.6rem 0; overflow-x: auto;
+}
+.formula-box .label {
+  font-size: 0.78rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.92rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--accent2); font-weight: 600; color: var(--accent); }
+ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+.tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+}
+.tag-blue { background: var(--accent2); color: var(--accent); }
+.tag-green { background: #ecfdf5; color: var(--green); }
+.tag-orange { background: #fff7ed; color: var(--orange); }
+.tag-purple { background: #f5f3ff; color: var(--purple); }
+p { margin: 0.5rem 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+.footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+.small { font-size: 0.85rem; color: var(--muted); }
+.page-ref {
+  display: inline-block; background: #eef2ff; color: var(--accent);
+  border-radius: 4px; padding: 0 0.4rem; font-size: 0.82rem; font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>第八章 液体</h1>
+<p class="subtitle">李椿·章立源·钱尚武《热学》 — 期末补热学笔记</p>
+
+<!-- ==================== 概述 ==================== -->
+<h2>概述 <span class="page-ref">p291</span></h2>
+<div class="card">
+<p>液体介于气体和固体之间：既有流动性（像气体），又有一定体积（像固体）。液体的微观结构特点是<strong>近程有序、远程无序</strong>。</p>
+</div>
+
+<!-- ==================== §1 ==================== -->
+<h2>§1 液体的微观结构 <span class="page-ref">p291-296</span></h2>
+
+<div class="card key-point">
+<ul>
+<li><strong>近程有序</strong>：每个分子附近有规则排列（几个分子间距范围）</li>
+<li><strong>远程无序</strong>：超出近程范围后排列不规则</li>
+<li>分子在平衡位置附近振动，但可发生跳跃式移动</li>
+<li>分子间作用力较强，分子间距接近固体</li>
+</ul>
+</div>
+
+<!-- ==================== §2 ==================== -->
+<h2>§2 液体中的输运过程 <span class="page-ref">p296-301</span></h2>
+
+<div class="card">
+<h3>液体的粘度 <span class="page-ref">p296-299</span></h3>
+<p>液体粘滞系数 $\eta$ 远大于气体。温度升高时液体粘度<strong>减小</strong>（与气体相反）。</p>
+<div class="formula-box">
+$$\eta = \eta_0 e^{E/(kT)}$$
+</div>
+<p>$E$ — 分子流动活化能</p>
+</div>
+
+<div class="card">
+<h3>泊肃叶公式 <span class="page-ref">p300-301</span></h3>
+<p>液体在圆管中层流的流量：</p>
+<div class="formula-box">
+$$Q = \frac{\pi R^4}{8\eta}\frac{\Delta p}{l}$$
+</div>
+<p>$R$ — 管半径；$\Delta p$ — 两端压强差；$l$ — 管长；$\eta$ — 粘度</p>
+</div>
+
+<!-- ==================== §3 ==================== -->
+<h2>§3 液体的表面性质 <span class="page-ref">p301-316</span></h2>
+
+<h3>一、表面张力 <span class="page-ref">p301-305</span></h3>
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 表面张力 (8.7)</div>
+$$f = \alpha L$$
+</div>
+<p>$\alpha$ — <strong>表面张力系数</strong>（N/m），方向与液面相切，垂直于线段指向液面收缩方向。</p>
+<p>$\alpha$ 随温度升高而减小，随液体纯度而变化。</p>
+</div>
+
+<h3>二、表面能 <span class="page-ref">p305-307</span></h3>
+<div class="card">
+<div class="formula-box">
+<div class="label">★ 表面能的定义 (8.8)</div>
+$$\alpha = \frac{\Delta E}{\Delta S}$$
+</div>
+<p>表面张力系数等于单位表面面积的自由能（J/m²）。</p>
+<p>外力做功：$\Delta A = \alpha \Delta S$</p>
+</div>
+
+<h3>三、弯曲液面的附加压强 <span class="page-ref">p307-311</span></h3>
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 球形液面附加压强 (拉普拉斯公式)</div>
+$$\Delta p = \frac{2\alpha}{R}$$
+</div>
+<p>对肥皂泡（有两个表面）：$\Delta p = 4\alpha/R$</p>
+<p>对任意弯曲液面：$\Delta p = \alpha\left(\frac{1}{R_1} + \frac{1}{R_2}\right)$</p>
+<ul>
+<li>凸液面：$\Delta p > 0$（附加压强指向液体内部）</li>
+<li>凹液面：$\Delta p < 0$（附加压强指向液体外部）</li>
+</ul>
+</div>
+
+<h3>四、毛细现象 <span class="page-ref">p311-316</span></h3>
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 毛细管中液面高度</div>
+$$h = \frac{2\alpha\cos\theta}{\rho g r}$$
+</div>
+<p>$r$ — 毛细管半径；$\theta$ — 接触角（润湿角）；$\rho$ — 液体密度</p>
+<ul>
+<li>$\theta < 90^\circ$（润湿）：$h > 0$，液面上升</li>
+<li>$\theta > 90^\circ$（不润湿）：$h < 0$，液面下降（如汞）</li>
+<li>$\theta = 0^\circ$：完全润湿，$h = 2\alpha/(\rho g r)$</li>
+</ul>
+</div>
+
+<div class="card key-point">
+<h3>接触角与润湿 <span class="page-ref">p314</span></h3>
+<div class="formula-box">
+$$\cos\theta = \frac{\alpha_{SG} - \alpha_{SL}}{\alpha_{LG}}$$
+</div>
+<p>$\alpha_{SG}, \alpha_{SL}, \alpha_{LG}$ 分别为固-气、固-液、液-气界面张力</p>
+</div>
+
+<!-- ==================== §4 ==================== -->
+<h2>§4 液体的蒸发与沸腾 <span class="page-ref">p316-322</span></h2>
+
+<div class="card">
+<h3>蒸发 <span class="page-ref">p316-318</span></h3>
+<ul>
+<li>发生在液体表面的汽化过程，任何温度下均可进行</li>
+<li>蒸发使液体降温（动能大的分子先逃逸）</li>
+<li>影响因素：表面积、温度、通风条件</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>沸腾 <span class="page-ref">p318-322</span></h3>
+<ul>
+<li>整个液体内部产生气泡的剧烈汽化</li>
+<li>沸腾温度（沸点）与压强有关</li>
+<li>沸腾条件：饱和蒸气压 = 外界压强</li>
+</ul>
+</div>
+
+<!-- ==================== 核心公式 ==================== -->
+<h2>本章核心公式速查</h2>
+
+<div class="card">
+<ol>
+<li><strong>表面张力</strong>：$f = \alpha L$ <span class="page-ref">p303</span></li>
+<li><strong>表面能</strong>：$\alpha = \Delta E/\Delta S$ <span class="page-ref">p306</span></li>
+<li><strong>球形液面附加压强</strong>：$\Delta p = 2\alpha/R$ <span class="page-ref">p309</span></li>
+<li><strong>拉普拉斯公式</strong>：$\Delta p = \alpha(1/R_1 + 1/R_2)$ <span class="page-ref">p310</span></li>
+<li><strong>毛细管高度</strong>：$h = 2\alpha\cos\theta/(\rho g r)$ <span class="page-ref">p313</span></li>
+<li><strong>接触角</strong>：$\cos\theta = (\alpha_{SG} - \alpha_{SL})/\alpha_{LG}$ <span class="page-ref">p314</span></li>
+<li><strong>泊肃叶公式</strong>：$Q = \pi R^4\Delta p/(8\eta l)$ <span class="page-ref">p301</span></li>
+<li><strong>液体粘度</strong>：$\eta = \eta_0 e^{E/(kT)}$ <span class="page-ref">p298</span></li>
+</ol>
+</div>
+
+<!-- ==================== 习题 ==================== -->
+<h2>习题导航 <span class="page-ref">p322-326</span></h2>
+
+<div class="grid2">
+<div class="card">
+<span class="tag tag-blue">表面张力</span> 1-5题
+<p class="small">表面张力系数测量、液滴</p>
+</div>
+<div class="card">
+<span class="tag tag-green">附加压强</span> 6-10题
+<p class="small">气泡、球形液面压强差</p>
+</div>
+<div class="card">
+<span class="tag tag-orange">毛细现象</span> 11-16题
+<p class="small">毛细管高度、接触角</p>
+</div>
+<div class="card">
+<span class="tag tag-purple">泊肃叶/粘度</span> 17-20题
+<p class="small">泊肃叶公式、液体粘度</p>
+</div>
+</div>
+
+<div class="footer">
+笔记生成于 2026年6月14日 · 教材：李椿·章立源·钱尚武《热学》人民教育出版社
+</div>
+
+</div>
+
+</body>
+</html>

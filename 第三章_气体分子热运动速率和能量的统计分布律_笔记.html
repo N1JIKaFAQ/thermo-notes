@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第三章 气体分子热运动速率和能量的统计分布律 — 热学笔记</title>
+<script>
+MathJax = {tex: {inlineMath: [['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --bg: #f8f9fa; --card: #ffffff; --accent: #2563eb;
+  --accent2: #dbeafe; --text: #1e293b; --muted: #64748b;
+  --border: #e2e8f0; --green: #059669; --orange: #ea580c;
+  --purple: #7c3aed; --pink: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+h1 {
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+.subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+h2 {
+  font-size: 1.35rem; font-weight: 600; color: var(--accent);
+  margin: 2rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent2);
+}
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.6rem; }
+.card {
+  background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem;
+  margin: 0.8rem 0; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.key-point { border-left: 4px solid var(--accent); background: var(--accent2); }
+.key-point strong { color: var(--accent); }
+.important { border-left: 4px solid var(--green); background: #ecfdf5; }
+.important strong { color: var(--green); }
+.formula-box {
+  background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem;
+  margin: 0.6rem 0; overflow-x: auto;
+}
+.formula-box .label {
+  font-size: 0.78rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.92rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--accent2); font-weight: 600; color: var(--accent); }
+ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+.tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+}
+.tag-blue { background: var(--accent2); color: var(--accent); }
+.tag-green { background: #ecfdf5; color: var(--green); }
+.tag-orange { background: #fff7ed; color: var(--orange); }
+.tag-purple { background: #f5f3ff; color: var(--purple); }
+.tag-pink { background: #fdf2f8; color: var(--pink); }
+p { margin: 0.5rem 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+.footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+.small { font-size: 0.85rem; color: var(--muted); }
+.page-ref {
+  display: inline-block; background: #eef2ff; color: var(--accent);
+  border-radius: 4px; padding: 0 0.4rem; font-size: 0.82rem; font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>第三章 气体分子热运动速率和能量的统计分布律</h1>
+<p class="subtitle">李椿·章立源·钱尚武《热学》 — 期末补热学笔记</p>
+
+<!-- ==================== §1 ==================== -->
+<h2>§1 气体分子的速率分布律 <span class="page-ref">p72-82</span></h2>
+
+<h3>一、速率分布函数 <span class="page-ref">p72-73</span></h3>
+<div class="card key-point">
+<p>设总分子数 N，速率在 $v \sim v+dv$ 内的分子数为 dN：</p>
+<div class="formula-box">
+$$\frac{dN}{N} = f(v) dv \tag{3.1}$$
+$$f(v) = \frac{dN}{N dv} \quad\text{— 速率分布函数}$$
+</div>
+<p><strong>归一化条件</strong>：</p>
+<div class="formula-box">$$\int_0^\infty f(v) dv = 1 \tag{3.3}$$</div>
+</div>
+
+<h3>二、麦克斯韦速率分布律 <span class="page-ref">p73-76</span></h3>
+<div class="card important">
+<div class="formula-box">
+$$\frac{dN}{N} = 4\pi\left(\frac{m}{2\pi kT}\right)^{3/2} e^{-mv^2/2kT} v^2 dv$$
+$$f(v) = 4\pi\left(\frac{m}{2\pi kT}\right)^{3/2} e^{-mv^2/2kT} v^2 \tag{3.4}$$
+</div>
+</div>
+
+<h3>三种特征速率 <span class="page-ref">p75-79</span></h3>
+<div class="grid3">
+<div class="card">
+<span class="tag tag-blue">最可几速率 $v_p$</span>
+<div class="formula-box">
+$$v_p = \sqrt{\frac{2kT}{m}} = \sqrt{\frac{2RT}{\mu}}$$
+$$\approx 1.41\sqrt{\frac{RT}{\mu}} \tag{3.5}$$
+</div>
+<p class="small">f(v) 取最大值时的速率<br>用于讨论速率分布</p>
+</div>
+
+<div class="card">
+<span class="tag tag-green">平均速率 $\bar{v}$</span>
+<div class="formula-box">
+$$\bar{v} = \sqrt{\frac{8kT}{\pi m}} = \sqrt{\frac{8RT}{\pi\mu}}$$
+$$\approx 1.59\sqrt{\frac{RT}{\mu}} \tag{3.6}$$
+</div>
+<p class="small">分子速率的算术平均<br>用于计算平均自由程</p>
+</div>
+
+<div class="card">
+<span class="tag tag-orange">方均根速率 $\sqrt{\overline{v^2}}$</span>
+<div class="formula-box">
+$$\sqrt{\overline{v^2}} = \sqrt{\frac{3kT}{m}} = \sqrt{\frac{3RT}{\mu}}$$
+$$\approx 1.73\sqrt{\frac{RT}{\mu}} \tag{3.7}$$
+</div>
+<p class="small">与平均平动动能相关<br>用于计算动能</p>
+</div>
+</div>
+
+<div class="card key-point">
+<p>三种速率关系：$\boxed{v_p : \bar{v} : \sqrt{\overline{v^2}} = 1 : 1.13 : 1.22}$</p>
+<p>均与 $\sqrt{T}$ 成正比，与 $\sqrt{m}$（或 $\sqrt{\mu}$）成反比</p>
+</div>
+
+<h3>四、麦克斯韦速度分布律 <span class="page-ref">p79</span></h3>
+<div class="card">
+<div class="formula-box">
+$$\frac{dN}{N} = \left(\frac{m}{2\pi kT}\right)^{3/2} e^{-m(v_x^2+v_y^2+v_z^2)/2kT} dv_x dv_y dv_z \tag{3.8}$$
+</div>
+<p><strong>速度空间</strong>：以 $v_x, v_y, v_z$ 为轴的坐标系。速率分布是速度分布在球壳 $4\pi v^2 dv$ 上的积分结果。</p>
+</div>
+
+<h3>五、误差函数 <span class="page-ref">p81</span></h3>
+<div class="card">
+<p>计算速度分量（或速率）小于某值的分子数时用到：</p>
+$$\text{erf}(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2} dt$$
+<p>例：$v_x$ 在 $0\sim v_p$ 内的分子数 = $\frac{N}{2}\text{erf}(1) = 0.422N$</p>
+</div>
+
+<h3>六、统计规律性和涨落现象 <span class="page-ref">p83-86</span></h3>
+<div class="card">
+<ul>
+<li>统计规律是对大量偶然事件整体起作用的规律</li>
+<li><strong>涨落</strong>：实际分布在某一区间的分子数与统计平均值的偏差
+  <br>涨落幅度 ≈ $\pm\sqrt{\Delta n}$，百分数 = $1/\sqrt{\Delta n}$</li>
+<li>分子数越大，涨落越不显著</li>
+</ul>
+</div>
+
+<!-- ==================== §2 ==================== -->
+<h2>§2 用分子射线实验验证麦克斯韦速度分布律 <span class="page-ref">p86-91</span></h2>
+
+<div class="card">
+<p><strong>分子射线装置</strong> <span class="page-ref">p86</span>：容器开狭缝 → 分子束射出 → 经狭缝准直 → 进入高真空室</p>
+<p><strong>旋转装置验证</strong>：不同速率的分子通过旋转圆筒上的狭缝时沉积在不同位置 → 测定速率分布</p>
+<p>实验与麦克斯韦分布理论曲线高度吻合，验证了分布律的正确性。</p>
+</div>
+
+<!-- ==================== §3 ==================== -->
+<h2>§3 玻尔兹曼分布律 重力场中微粒按高度的分布 <span class="page-ref">p91-94</span></h2>
+
+<h3>一、玻尔兹曼分布律 <span class="page-ref">p91</span></h3>
+<div class="card important">
+<p>麦克斯韦分布 + 外力场（保守力）→ 玻尔兹曼分布</p>
+<p>分子的总能量 $\varepsilon = \varepsilon_k + \varepsilon_p$</p>
+<div class="formula-box">
+$$dN = n_0\left(\frac{m}{2\pi kT}\right)^{3/2} e^{-(\varepsilon_k+\varepsilon_p)/kT} dv_x dv_y dv_z \, dx dy dz \tag{3.14}$$
+</div>
+<p>对速度积分后，得到<strong>分子按位能的分布</strong>：</p>
+<div class="formula-box">
+$$n = n_0 e^{-\varepsilon_p/kT} \tag{3.16}$$
+</div>
+<p class="small">这是玻尔兹曼分布的常用形式，适用于任何保守力场。</p>
+</div>
+
+<h3>二、重力场中按高度的分布 <span class="page-ref">p92-94</span></h3>
+<div class="card important">
+<div class="formula-box">
+$$n = n_0 e^{-mgz/kT} \tag{3.18}$$
+<p>等价形式（等温大气压强公式）：</p>
+$$p = p_0 e^{-\mu g z/RT}$$
+$$z = \frac{RT}{\mu g}\ln\frac{p_0}{p}$$
+</div>
+</div>
+
+<!-- ==================== §4 ==================== -->
+<h2>§4 能量按自由度均分定理 <span class="page-ref">p94-100</span></h2>
+
+<h3>一、自由度 <span class="page-ref">p94-95</span></h3>
+<div class="card">
+<table>
+<tr><th>分子类型</th><th>平动 t</th><th>转动 r</th><th>振动 s</th><th>总自由度</th></tr>
+<tr><td>单原子（He, Ne, Ar）</td><td>3</td><td>0</td><td>0</td><td>3</td></tr>
+<tr><td>双原子（H₂, O₂, N₂）</td><td>3</td><td>2</td><td>1</td><td>6</td></tr>
+<tr><td>多原子（n个原子，非线性）</td><td>3</td><td>3</td><td>3n-6</td><td>3n</td></tr>
+</table>
+</div>
+
+<h3>二、能量按自由度均分定理 <span class="page-ref">p96-97</span></h3>
+<div class="card important">
+<p><strong>定理内容</strong>：在温度为 T 的平衡状态下，分子的每个自由度都具有相同的平均动能 $\frac12 kT$。</p>
+<div class="formula-box">
+$$\frac12 m\overline{v_x^2} = \frac12 m\overline{v_y^2} = \frac12 m\overline{v_z^2} = \frac12 kT$$
+
+分子平均总能量：$$\bar{\varepsilon} = \frac12(t + r + 2s)kT \tag{3.20}$$
+</div>
+<p>注意：每个振动自由度贡献 $\frac12 kT$ 动能 + $\frac12 kT$ 势能 = $kT$</p>
+</div>
+
+<h3>三、理想气体的内能和热容 <span class="page-ref">p98</span></h3>
+<div class="card important">
+<div class="formula-box">
+<div class="label">一摩尔理想气体内能</div>
+$$u = \frac12(t + r + 2s)RT \tag{3.22}$$
+
+<div class="label">定容摩尔热容</div>
+$$C_V = \frac{du}{dT} = \frac12(t + r + 2s)R$$
+
+<div class="label">定压摩尔热容（迈耶公式）</div>
+$$C_P = C_V + R$$
+</div>
+</div>
+
+<div class="card">
+<table>
+<tr><th>气体类型</th><th>u</th><th>C_V</th><th>C_P</th><th>$\gamma = C_P/C_V$</th></tr>
+<tr><td>单原子</td><td>$\frac32 RT$</td><td>$\frac32 R$</td><td>$\frac52 R$</td><td>1.67</td></tr>
+<tr><td>双原子（常温，振动冻结）</td><td>$\frac52 RT$</td><td>$\frac52 R$</td><td>$\frac72 R$</td><td>1.40</td></tr>
+<tr><td>双原子（含振动）</td><td>$\frac72 RT$</td><td>$\frac72 R$</td><td>$\frac92 R$</td><td>1.29</td></tr>
+</table>
+<p class="small">注意：常温下双原子分子的振动自由度通常"冻结"，不参与能量均分</p>
+</div>
+
+<!-- ==================== 核心公式速查 ==================== -->
+<h2>本章核心公式速查</h2>
+
+<div class="card">
+<ol>
+<li><strong>麦克斯韦速率分布</strong>：$f(v) = 4\pi\left(\frac{m}{2\pi kT}\right)^{3/2} e^{-mv^2/2kT} v^2$</li>
+<li><strong>最可几速率</strong>：$v_p = \sqrt{2kT/m} = \sqrt{2RT/\mu}$</li>
+<li><strong>平均速率</strong>：$\bar{v} = \sqrt{8kT/\pi m} = \sqrt{8RT/\pi\mu}$</li>
+<li><strong>方均根速率</strong>：$\sqrt{\overline{v^2}} = \sqrt{3kT/m} = \sqrt{3RT/\mu}$</li>
+<li><strong>玻尔兹曼分布</strong>：$n = n_0 e^{-\varepsilon_p/kT}$</li>
+<li><strong>等温大气压强公式</strong>：$p = p_0 e^{-\mu g z/RT}$</li>
+<li><strong>能量均分</strong>：每个自由度 $\frac12 kT$</li>
+<li><strong>分子平均总能量</strong>：$\bar{\varepsilon} = \frac12(t + r + 2s)kT$</li>
+<li><strong>内能</strong>：$u = \frac12(t + r + 2s)RT$</li>
+<li><strong>定容热容</strong>：$C_V = \frac12(t + r + 2s)R$</li>
+</ol>
+</div>
+
+<!-- ==================== 习题 ==================== -->
+<h2>习题导航 <span class="page-ref">p109-110</span></h2>
+
+<div class="grid3">
+<div class="card">
+<span class="tag tag-blue">分布函数计算</span> 1-10题
+<p class="small">速率分布、erf误差函数</p>
+</div>
+<div class="card">
+<span class="tag tag-green">碰撞/实验</span> 11-15题
+<p class="small">碰壁次数、分子射线验证</p>
+</div>
+<div class="card">
+<span class="tag tag-orange">玻尔兹曼分布</span> 21-23题
+<p class="small">等温大气、高度与气压</p>
+</div>
+<div class="card">
+<span class="tag tag-purple">速度分量</span> 16-20题
+<p class="small">erf(x)证明、v_x>2v_p计数</p>
+</div>
+<div class="card">
+<span class="tag tag-pink">能量分布</span> 24-25题
+<p class="small">v_x²平均值、平动能分布函数</p>
+</div>
+<div class="card">
+<span class="tag tag-blue">概念</span> 思考题1-20题
+<p class="small">p105-107，自由度、涨落、内能</p>
+</div>
+</div>
+
+<div class="footer">
+笔记生成于 2026年6月14日 · 教材：李椿·章立源·钱尚武《热学》人民教育出版社
+</div>
+
+</div>
+
+</body>
+</html>

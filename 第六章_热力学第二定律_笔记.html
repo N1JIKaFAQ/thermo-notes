@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第六章 热力学第二定律 — 热学笔记</title>
+<script>
+MathJax = {tex: {inlineMath: [['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --bg: #f8f9fa; --card: #ffffff; --accent: #2563eb;
+  --accent2: #dbeafe; --text: #1e293b; --muted: #64748b;
+  --border: #e2e8f0; --green: #059669; --orange: #ea580c;
+  --purple: #7c3aed; --pink: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+h1 {
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+.subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+h2 {
+  font-size: 1.35rem; font-weight: 600; color: var(--accent);
+  margin: 2rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent2);
+}
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.6rem; }
+.card {
+  background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem;
+  margin: 0.8rem 0; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.key-point { border-left: 4px solid var(--accent); background: var(--accent2); }
+.key-point strong { color: var(--accent); }
+.important { border-left: 4px solid var(--green); background: #ecfdf5; }
+.important strong { color: var(--green); }
+.formula-box {
+  background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem;
+  margin: 0.6rem 0; overflow-x: auto;
+}
+.formula-box .label {
+  font-size: 0.78rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.92rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--accent2); font-weight: 600; color: var(--accent); }
+ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+.tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+}
+.tag-blue { background: var(--accent2); color: var(--accent); }
+.tag-green { background: #ecfdf5; color: var(--green); }
+.tag-orange { background: #fff7ed; color: var(--orange); }
+.tag-purple { background: #f5f3ff; color: var(--purple); }
+.tag-pink { background: #fdf2f8; color: var(--pink); }
+p { margin: 0.5rem 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+.footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+.small { font-size: 0.85rem; color: var(--muted); }
+.page-ref {
+  display: inline-block; background: #eef2ff; color: var(--accent);
+  border-radius: 4px; padding: 0 0.4rem; font-size: 0.82rem; font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>第六章 热力学第二定律</h1>
+<p class="subtitle">李椿·章立源·钱尚武《热学》 — 期末补热学笔记</p>
+
+<!-- ==================== 概述 ==================== -->
+<h2>概述 <span class="page-ref">p201</span></h2>
+<div class="card">
+<p>热力学第一定律说明能量守恒，<strong>但并未指出过程的方向性</strong>。热力学第二定律独立于第一定律，揭示了自然界中一切与热现象有关的宏观过程的<strong>方向性和不可逆性</strong>。</p>
+</div>
+
+<!-- ==================== §1 ==================== -->
+<h2>§1 自然过程的方向性 <span class="page-ref">p201-206</span></h2>
+
+<div class="card">
+<h3>不可逆过程的实例</h3>
+<ul>
+<li><strong>热传导</strong>：热量自发地从高温传向低温，反之不成立</li>
+<li><strong>功变热</strong>：机械功可以通过摩擦全部转化为热，反之不可</li>
+<li><strong>扩散</strong>：气体自发混合，不会自发分离</li>
+<li><strong>自由膨胀</strong>：气体向真空膨胀，不会自动缩回</li>
+</ul>
+<p>结论：<strong>一切与热现象有关的宏观过程都是不可逆的。</strong></p>
+</div>
+
+<!-- ==================== §2 ==================== -->
+<h2>§2 热力学第二定律的表述 <span class="page-ref">p206-213</span></h2>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 开尔文-普朗克表述</div>
+<p>不可能从单一热源吸取热量，使之完全变为有用功而不产生其他影响。</p>
+</div>
+<p>→ 第二种永动机（从单一热源吸热全部做功）不可能实现。</p>
+</div>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 克劳修斯表述</div>
+<p>热量不能自发地从低温物体传到高温物体而不引起其他变化。</p>
+</div>
+<p>→ 热传导的不可逆性。制冷机需外界做功才能实现逆向传热。</p>
+</div>
+
+<div class="card key-point">
+<p><strong>两种表述的等价性</strong>：可以证明开尔文表述和克劳修斯表述是等价的。违反其中之一必然导致违反另一个。</p>
+</div>
+
+<h3>热机与制冷机 <span class="page-ref">p209-213</span></h3>
+<div class="card">
+<div class="formula-box">
+<div class="label">热机效率</div>
+$$\eta = \frac{A}{Q_1} = 1 - \frac{Q_2}{Q_1}$$
+
+<div class="label">制冷系数</div>
+$$e = \frac{Q_2}{A} = \frac{Q_2}{Q_1 - Q_2}$$
+</div>
+<p>$Q_1$ — 从高温热源吸热；$Q_2$ — 向低温热源放热；$A$ — 对外做功</p>
+</div>
+
+<!-- ==================== §3 ==================== -->
+<h2>§3 卡诺定理 <span class="page-ref">p213-220</span></h2>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 卡诺定理</div>
+<ol>
+<li>在相同的高温热源 $T_1$ 和低温热源 $T_2$ 之间工作的一切<strong>可逆</strong>热机，其效率都相等，与工作物质无关</li>
+<li>一切<strong>不可逆</strong>热机的效率都小于可逆热机的效率</li>
+</ol>
+</div>
+</div>
+
+<div class="card">
+<h3>卡诺热机效率</h3>
+<div class="formula-box">
+$$\eta_C = 1 - \frac{T_2}{T_1}$$
+</div>
+<p>只取决于两个热源的温度，与工作物质种类无关。</p>
+</div>
+
+<div class="card key-point">
+<p><strong>重要推论</strong>：</p>
+<ul>
+<li>可逆热机效率最大</li>
+<li>$\displaystyle \frac{Q_1}{T_1} = \frac{Q_2}{T_2}$（可逆卡诺循环）</li>
+<li>$\displaystyle \frac{Q_1}{T_1} \leq \frac{Q_2}{T_2}$（不可逆）</li>
+<li>$\displaystyle \oint \frac{\delta Q}{T} \leq 0$（克劳修斯不等式）</li>
+</ul>
+</div>
+
+<!-- ==================== §4 ==================== -->
+<h2>§4 熵 <span class="page-ref">p220-228</span></h2>
+
+<div class="card important">
+<h3>熵的定义 <span class="page-ref">p220-222</span></h3>
+<p><strong>熵</strong>是状态函数，其微分定义为：</p>
+<div class="formula-box">
+<div class="label">★ 克劳修斯熵公式</div>
+$$dS = \frac{\delta Q_{\text{rev}}}{T}$$
+$$\Delta S = S_2 - S_1 = \int_1^2 \frac{\delta Q_{\text{rev}}}{T}$$
+</div>
+<p>熵是广延量，单位 J/K。</p>
+</div>
+
+<div class="card">
+<h3>理想气体的熵变计算 <span class="page-ref">p222-226</span></h3>
+<div class="formula-box">
+$$\Delta S = nC_V\ln\frac{T_2}{T_1} + nR\ln\frac{V_2}{V_1}$$
+$$\Delta S = nC_P\ln\frac{T_2}{T_1} - nR\ln\frac{p_2}{p_1}$$
+</div>
+<p>等温过程（$T=\text{const}$）：$\Delta S = nR\ln(V_2/V_1)$</p>
+<p>等容过程（$V=\text{const}$）：$\Delta S = nC_V\ln(T_2/T_1)$</p>
+<p>等压过程（$p=\text{const}$）：$\Delta S = nC_P\ln(T_2/T_1)$</p>
+</div>
+
+<div class="card">
+<h3>相变过程的熵变 <span class="page-ref">p226</span></h3>
+<div class="formula-box">
+$$\Delta S = \frac{Q}{T} = \frac{L}{T}$$
+</div>
+<p>$L$ — 相变潜热；$T$ — 相变温度（等温等压可逆相变）</p>
+</div>
+
+<!-- ==================== §5 ==================== -->
+<h2>§5 熵增加原理 <span class="page-ref">p228-234</span></h2>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 熵增加原理</div>
+$$\Delta S_{\text{孤立}} \geq 0$$
+</div>
+<p>孤立系统的熵永不减少：可逆过程 $\Delta S = 0$，不可逆过程 $\Delta S > 0$。</p>
+</div>
+
+<div class="card key-point">
+<p><strong>热力学第二定律的数学表达</strong>：对于任意过程，系统和周围环境的总熵变满足：</p>
+<div class="formula-box">
+$$\Delta S_{\text{总}} = \Delta S_{\text{系统}} + \Delta S_{\text{外界}} \geq 0$$
+</div>
+<p>这是判断过程是否可逆的准则（熵判据）。</p>
+</div>
+
+<div class="card">
+<h3>应用：自由膨胀的熵变 <span class="page-ref">p231</span></h3>
+<p>理想气体向真空自由膨胀，体积从 $V_1$ 到 $V_2$：</p>
+<div class="formula-box">
+$$\Delta S = nR\ln\frac{V_2}{V_1} > 0$$
+</div>
+<p>自由膨胀是典型的不可逆过程，熵增加。</p>
+</div>
+
+<!-- ==================== §6 ==================== -->
+<h2>§6 热力学第二定律的统计意义 <span class="page-ref">p234-240</span></h2>
+
+<div class="card important">
+<h3>玻尔兹曼熵公式 <span class="page-ref">p236</span></h3>
+<div class="formula-box">
+$$S = k_B \ln \Omega$$
+</div>
+<p>$\Omega$ — 宏观状态对应的微观状态数；$k_B$ — 玻尔兹曼常数</p>
+</div>
+
+<div class="card key-point">
+<p><strong>统计意义</strong>：</p>
+<ul>
+<li>孤立系统的自发过程总是从微观状态数少的宏观态（有序）向微观状态数多的宏观态（无序）过渡</li>
+<li>熵是系统无序程度的量度</li>
+<li>不可逆性的统计本质：逆向过程的概率极小（如 $N$ 个分子全回到原处的概率为 $1/2^N$）</li>
+<li>对一摩尔气体，全部分子返回容器一侧的概率几乎为零（$1/2^{6\times10^{23}}$）</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>自由膨胀的统计解释</h3>
+<p>一个分子在容器左右两侧各有 2 种等概率分布。$N$ 个分子共有 $2^N$ 种分布。</p>
+<div class="formula-box">
+$$\Delta S = k_B \ln \frac{\Omega_2}{\Omega_1} = k_B \ln(2^N) = Nk_B\ln 2$$
+</div>
+<p>与热力学结果 $nR\ln 2$ 一致（因 $Nk_B = nR$）。</p>
+</div>
+
+<!-- ==================== §7 ==================== -->
+<h2>§7 热力学第三定律 <span class="page-ref">p240-244</span></h2>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 热力学第三定律（能斯特热定理）</div>
+<p><strong>不可能通过有限步骤使任何物体冷却到绝对零度（0 K）。</strong></p>
+<p>等价表述：当 $T \to 0$ K 时，任何纯物质的完美晶体的熵趋于零。</p>
+$$\lim_{T\to 0} S(T) = 0$$
+</div>
+</div>
+
+<div class="card">
+<h3>第三定律的推论</h3>
+<ul>
+<li><strong>绝对零度不可达</strong>：无论怎样冷却，无法通过有限次操作到达 0 K</li>
+<li><strong>低温热容</strong>：$T \to 0$ 时，$C_V, C_P \to 0$（德拜 $T^3$ 律）</li>
+<li>提供了熵的绝对基准（$S(0)=0$）</li>
+</ul>
+<div class="formula-box">
+$$S(T) = \int_0^T \frac{C(T')}{T'}\,dT'$$
+</div>
+</div>
+
+<!-- ==================== §8 ==================== -->
+<h2>§8 熵与能量退降 <span class="page-ref">p244-250</span></h2>
+
+<div class="card">
+<p>不可逆过程导致能量"退降"：虽然总能量守恒，但可用能（可转化为功的部分）减少。熵的增加反映了能量的退降。</p>
+<div class="formula-box">
+$$E_{\text{退降}} = T_0 \Delta S$$
+</div>
+<p>$T_0$ — 环境温度；$\Delta S$ — 不可逆过程引起的熵增</p>
+</div>
+
+<!-- ==================== 核心公式 ==================== -->
+<h2>本章核心公式速查</h2>
+
+<div class="card">
+<ol>
+<li><strong>热机效率</strong>：$\eta = 1 - Q_2/Q_1$ <span class="page-ref">p210</span></li>
+<li><strong>卡诺效率</strong>：$\eta_C = 1 - T_2/T_1$ <span class="page-ref">p216</span></li>
+<li><strong>制冷系数</strong>：$e = Q_2/A$ <span class="page-ref">p212</span></li>
+<li><strong>克劳修斯不等式</strong>：$\displaystyle\oint\frac{\delta Q}{T} \leq 0$ <span class="page-ref">p220</span></li>
+<li><strong>熵定义</strong>：$dS = \delta Q_{\text{rev}}/T$ <span class="page-ref">p221</span></li>
+<li><strong>理想气体熵变</strong>：$\Delta S = nC_V\ln\frac{T_2}{T_1} + nR\ln\frac{V_2}{V_1}$ <span class="page-ref">p223</span></li>
+<li><strong>相变熵变</strong>：$\Delta S = L/T$ <span class="page-ref">p226</span></li>
+<li><strong>熵增加原理</strong>：$\Delta S_{\text{孤立}} \geq 0$ <span class="page-ref">p229</span></li>
+<li><strong>玻尔兹曼熵公式</strong>：$S = k_B\ln\Omega$ <span class="page-ref">p236</span></li>
+<li><strong>热力学第三定律</strong>：$T \to 0$ 时 $S \to 0$ <span class="page-ref">p242</span></li>
+<li><strong>能量退降</strong>：$E = T_0\Delta S$ <span class="page-ref">p246</span></li>
+</ol>
+</div>
+
+<!-- ==================== 习题 ==================== -->
+<h2>习题导航 <span class="page-ref">p250-258</span></h2>
+
+<div class="grid2">
+<div class="card">
+<span class="tag tag-blue">方向性/表述</span> 1-5题
+<p class="small">过程方向性、第二定律表述等价性</p>
+</div>
+<div class="card">
+<span class="tag tag-green">卡诺循环</span> 6-12题
+<p class="small">效率计算、卡诺定理应用</p>
+</div>
+<div class="card">
+<span class="tag tag-orange">熵变计算</span> 13-20题
+<p class="small">各种过程的熵变计算</p>
+</div>
+<div class="card">
+<span class="tag tag-purple">熵增加原理</span> 21-26题
+<p class="small">熵增判断、可行性分析</p>
+</div>
+<div class="card">
+<span class="tag tag-pink">统计解释</span> 27-30题
+<p class="small">微观状态数、玻尔兹曼熵</p>
+</div>
+<div class="card">
+<span class="tag tag-blue">概念</span> 思考题1-18题
+<p class="small">p244-248，不可逆性、熵、能量退降</p>
+</div>
+</div>
+
+<div class="footer">
+笔记生成于 2026年6月14日 · 教材：李椿·章立源·钱尚武《热学》人民教育出版社
+</div>
+
+</div>
+
+</body>
+</html>

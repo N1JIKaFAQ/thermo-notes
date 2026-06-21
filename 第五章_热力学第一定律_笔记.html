@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第五章 热力学第一定律 — 热学笔记</title>
+<script>
+MathJax = {tex: {inlineMath: [['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --bg: #f8f9fa; --card: #ffffff; --accent: #2563eb;
+  --accent2: #dbeafe; --text: #1e293b; --muted: #64748b;
+  --border: #e2e8f0; --green: #059669; --orange: #ea580c;
+  --purple: #7c3aed; --pink: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+h1 {
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+.subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+h2 {
+  font-size: 1.35rem; font-weight: 600; color: var(--accent);
+  margin: 2rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent2);
+}
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.6rem; }
+.card {
+  background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem;
+  margin: 0.8rem 0; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.key-point { border-left: 4px solid var(--accent); background: var(--accent2); }
+.key-point strong { color: var(--accent); }
+.important { border-left: 4px solid var(--green); background: #ecfdf5; }
+.important strong { color: var(--green); }
+.formula-box {
+  background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem;
+  margin: 0.6rem 0; overflow-x: auto;
+}
+.formula-box .label {
+  font-size: 0.78rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.92rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--accent2); font-weight: 600; color: var(--accent); }
+ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+.tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+}
+.tag-blue { background: var(--accent2); color: var(--accent); }
+.tag-green { background: #ecfdf5; color: var(--green); }
+.tag-orange { background: #fff7ed; color: var(--orange); }
+.tag-purple { background: #f5f3ff; color: var(--purple); }
+.tag-pink { background: #fdf2f8; color: var(--pink); }
+p { margin: 0.5rem 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+.footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+.small { font-size: 0.85rem; color: var(--muted); }
+.page-ref {
+  display: inline-block; background: #eef2ff; color: var(--accent);
+  border-radius: 4px; padding: 0 0.4rem; font-size: 0.82rem; font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>第五章 热力学第一定律</h1>
+<p class="subtitle">李椿·章立源·钱尚武《热学》 — 期末补热学笔记</p>
+
+<!-- ==================== 概述 ==================== -->
+<h2>概述 <span class="page-ref">p144</span></h2>
+<div class="card">
+<p>热力学第一定律是能量守恒定律在热力学过程中的具体体现。本章在准静态过程和功的概念基础上，建立热力学第一定律，并应用于理想气体的各种典型过程（等容、等压、等温、绝热、多方），最后讨论循环过程和卡诺循环。</p>
+</div>
+
+<!-- ==================== §1 ==================== -->
+<h2>§1 热力学过程 <span class="page-ref">p144-148</span></h2>
+
+<h3>一、准静态过程 <span class="page-ref">p144-146</span></h3>
+<div class="card key-point">
+<ul>
+<li><strong>热力学过程</strong>：系统状态随时间变化的过程</li>
+<li><strong>非静态过程</strong>：变化太快，系统经历一系列非平衡态</li>
+<li><strong>准静态过程</strong>：过程无限缓慢，每一时刻系统都近似处于平衡态</li>
+<li><strong>弛豫时间</strong>：从旧平衡破坏到新平衡建立所需的时间</li>
+</ul>
+<p>准静态过程的条件：过程进行时间 $\gg$ 弛豫时间，且无摩擦。</p>
+</div>
+
+<h3>二、p-V 图 <span class="page-ref">p146-148</span></h3>
+<div class="card">
+<ul>
+<li>以 $p$ 为纵坐标、$V$ 为横坐标的图</li>
+<li>每一点代表一个平衡态</li>
+<li>每一条连续曲线代表一个准静态过程</li>
+<li>非平衡态不能在 p-V 图上表示</li>
+</ul>
+</div>
+
+<!-- ==================== §2 ==================== -->
+<h2>§2 功 <span class="page-ref">p148-152</span></h2>
+
+<div class="card important">
+<p>在准静态过程中，外界对系统所做的元功：</p>
+<div class="formula-box">
+<div class="label">★ 准静态过程的功 (5.2)</div>
+$$dA = -p\,dV$$
+$$A = -\int_{V_1}^{V_2} p\,dV \tag{5.3}$$
+</div>
+<ul>
+<li>系统压缩（$dV<0$）：$dA>0$，外界对系统做正功</li>
+<li>系统膨胀（$dV>0$）：$dA<0$，系统对外界做正功</li>
+<li>系统对外做功：$dA' = p\,dV = -dA$</li>
+</ul>
+</div>
+
+<div class="card key-point">
+<p><strong>功是过程量</strong>：其数值不仅取决于初末状态，还取决于路径。在 p-V 图上，功等于曲线下的面积（带符号）。</p>
+<p>功不是状态函数，$dA$ 不是全微分。</p>
+</div>
+
+<!-- ==================== §3 ==================== -->
+<h2>§3 热量与热容 <span class="page-ref">p153-158</span></h2>
+
+<h3>一、热量 <span class="page-ref">p153-154</span></h3>
+<div class="card">
+<p><strong>热量</strong>是系统与外界间由于温度差而传递的能量，是过程量。焦耳实验（重物下落搅水、电流加热等）证明了热与功的等价性：</p>
+<div class="formula-box">
+$$\text{热功当量} \quad 1\,\text{cal} = 4.184\,\text{J}$$
+</div>
+</div>
+
+<h3>二、热容 <span class="page-ref">p154-158</span></h3>
+<div class="card">
+<table>
+<tr><th>名称</th><th>定义式</th><th>对理想气体</th></tr>
+<tr><td>热容 $C$</td><td>$C = \dfrac{dQ}{dT}$</td><td>—</td></tr>
+<tr><td>定容摩尔热容 $C_V$</td><td>$C_V = \left(\dfrac{\partial U}{\partial T}\right)_V$</td><td>$C_V = \frac12(t+r+2s)R$</td></tr>
+<tr><td>定压摩尔热容 $C_P$</td><td>$C_P = \left(\dfrac{\partial H}{\partial T}\right)_p$</td><td>$C_P = C_V + R$</td></tr>
+<tr><td>比热比 $\gamma$</td><td>$\gamma = C_P/C_V$</td><td>单原子 1.67, 双原子 1.40</td></tr>
+</table>
+</div>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 迈耶公式 (5.8)</div>
+$$C_P - C_V = R$$
+</div>
+<p class="small">对理想气体成立，源于 $H = U + pV$ 关系。</p>
+</div>
+
+<!-- ==================== §4 ==================== -->
+<h2>§4 热力学第一定律 <span class="page-ref">p159-164</span></h2>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 热力学第一定律</div>
+$$\Delta U = Q - A \quad\text{(系统对外做功为正)}$$
+$$\Delta U = Q + W \quad\text{(外界对系统做功为正)}$$
+<p>微分形式：$dU = \delta Q - \delta A$</p>
+</div>
+<p>其中 $\Delta U$ 为内能变化（状态函数，只取决于初末态），$Q$ 为吸收热量，$A$ 为系统对外做功。</p>
+</div>
+
+<div class="card key-point">
+<p><strong>内能是状态函数</strong>：对理想气体，$U$ 仅与温度有关，$U = \frac12(t+r+2s)RT$。</p>
+<p>对任何循环过程，$\oint dU = 0$，所以 $Q_{\text{循环}} = A_{\text{循环}}$。</p>
+</div>
+
+<!-- ==================== §5 ==================== -->
+<h2>§5 焓 <span class="page-ref">p164-167</span></h2>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 焓的定义</div>
+$$H = U + pV$$
+</div>
+<p>焓是状态函数。在等压过程中（$dp=0$）：</p>
+<div class="formula-box">
+$$\Delta H = Q_p$$
+</div>
+<p>即等压过程中系统吸收的热量等于焓的增加。</p>
+</div>
+
+<div class="card">
+<h3>焓的微分形式</h3>
+<div class="formula-box">
+$$dH = dU + p\,dV + V\,dp = \delta Q + V\,dp$$
+</div>
+<p>等压时 $dp=0$ → $dH = \delta Q_p$</p>
+</div>
+
+<!-- ==================== §6 ==================== -->
+<h2>§6 热力学第一定律对理想气体的应用 <span class="page-ref">p168-180</span></h2>
+
+<div class="card important">
+<table>
+<tr><th>过程</th><th>条件</th><th>$A$（系统做功）</th><th>$Q$</th><th>$\Delta U$</th><th>过程方程</th></tr>
+<tr>
+  <td><strong>等容</strong></td>
+  <td>$V=\text{const}$</td>
+  <td>$0$</td>
+  <td>$nC_V\Delta T$</td>
+  <td>$nC_V\Delta T$</td>
+  <td>$\dfrac{p}{T}=\text{const}$</td>
+</tr>
+<tr>
+  <td><strong>等压</strong></td>
+  <td>$p=\text{const}$</td>
+  <td>$p\Delta V = nR\Delta T$</td>
+  <td>$nC_P\Delta T$</td>
+  <td>$nC_V\Delta T$</td>
+  <td>$\dfrac{V}{T}=\text{const}$</td>
+</tr>
+<tr>
+  <td><strong>等温</strong></td>
+  <td>$T=\text{const}$</td>
+  <td>$nRT\ln\dfrac{V_2}{V_1}$</td>
+  <td>$A$</td>
+  <td>$0$</td>
+  <td>$pV=\text{const}$</td>
+</tr>
+<tr>
+  <td><strong>绝热</strong></td>
+  <td>$Q=0$</td>
+  <td>$-\Delta U = nC_V(T_1-T_2)$</td>
+  <td>$0$</td>
+  <td>$-A$</td>
+  <td>$pV^\gamma=\text{const}$</td>
+</tr>
+</table>
+</div>
+
+<h3>一、等容过程 <span class="page-ref">p168-170</span></h3>
+<div class="card">
+<p>$dV=0 \Rightarrow A=0$，热量全部用于增加内能。</p>
+<div class="formula-box">
+$$Q_V = \Delta U = nC_V(T_2 - T_1)$$
+</div>
+</div>
+
+<h3>二、等压过程 <span class="page-ref">p170-172</span></h3>
+<div class="card">
+<p>$p=\text{const}$，系统做功 $A = p(V_2 - V_1)$。</p>
+<div class="formula-box">
+$$A = nR(T_2 - T_1)$$
+$$Q_P = nC_P(T_2 - T_1)$$
+$$\Delta U = nC_V(T_2 - T_1)$$
+</div>
+</div>
+
+<h3>三、等温过程 <span class="page-ref">p172-175</span></h3>
+<div class="card">
+<p>$T=\text{const}$，理想气体内能不变（$\Delta U=0$）。吸收的热量全部用于对外做功。</p>
+<div class="formula-box">
+$$A = \int_{V_1}^{V_2} p\,dV = nRT\int_{V_1}^{V_2}\frac{dV}{V} = nRT\ln\frac{V_2}{V_1}$$
+$$Q = A = nRT\ln\frac{V_2}{V_1} = nRT\ln\frac{p_1}{p_2}$$
+</div>
+</div>
+
+<h3>四、绝热过程 <span class="page-ref">p175-178</span></h3>
+<div class="card important">
+<p>$Q=0$，系统对外做功完全来自内能减少。</p>
+<div class="formula-box">
+<div class="label">★ 绝热过程方程（泊松公式）</div>
+$$pV^\gamma = \text{const} \tag{5.26}$$
+$$TV^{\gamma-1} = \text{const} \tag{5.27}$$
+$$p^{\gamma-1}T^{-\gamma} = \text{const}$$
+</div>
+<div class="formula-box">
+<div class="label">绝热过程的功</div>
+$$A = -\Delta U = nC_V(T_1 - T_2)$$
+$$A = \frac{p_1V_1 - p_2V_2}{\gamma-1} = \frac{nR(T_1 - T_2)}{\gamma-1}$$
+</div>
+</div>
+
+<div class="card key-point">
+<p><strong>绝热线与等温线的比较</strong>：在 p-V 图上，绝热线比等温线更陡。因为 $\gamma > 1$，绝热膨胀时压强下降更快（温度同时下降）。</p>
+</div>
+
+<h3>五、多方过程 <span class="page-ref">p178-180</span></h3>
+<div class="card">
+<p>实际过程通常介于等温与绝热之间，可用多方过程描述：</p>
+<div class="formula-box">
+$$pV^n = \text{const} \quad (1 < n < \gamma)$$
+</div>
+<p>$n$ 为多方指数。$n=0$ 等压、$n=1$ 等温、$n=\gamma$ 绝热、$n\to\infty$ 等容。</p>
+</div>
+
+<!-- ==================== §7 ==================== -->
+<h2>§7 循环过程和卡诺循环 <span class="page-ref">p180-191</span></h2>
+
+<h3>一、循环过程 <span class="page-ref">p180-183</span></h3>
+<div class="card">
+<p>系统经过一系列变化后回到初态的过程。在 p-V 图上为闭合曲线。</p>
+<div class="formula-box">
+$$\oint dU = 0 \quad\Rightarrow\quad A_{\text{净}} = Q_{\text{净}} = Q_1 - Q_2$$
+</div>
+<p>$Q_1$ — 系统吸收的总热量；$Q_2$ — 系统放出的总热量（绝对值）。</p>
+</div>
+
+<div class="card important">
+<h3>热机效率</h3>
+<div class="formula-box">
+$$\eta = \frac{A_{\text{净}}}{Q_1} = 1 - \frac{Q_2}{Q_1} \tag{5.31}$$
+</div>
+</div>
+
+<h3>二、卡诺循环 <span class="page-ref">p183-191</span></h3>
+<div class="card important">
+<p>卡诺循环由两个等温过程和两个绝热过程组成，是效率最高的热机循环。</p>
+
+<div class="formula-box">
+<div class="label">★ 卡诺热机效率</div>
+$$\eta_C = 1 - \frac{T_2}{T_1} \tag{5.34}$$
+</div>
+<p>$T_1$ — 高温热源温度；$T_2$ — 低温热源温度</p>
+</div>
+
+<div class="card">
+<h3>卡诺循环的四个过程</h3>
+<ol>
+<li><strong>等温膨胀</strong>（$T_1$）：与高温热源接触，吸热 $Q_1 = nRT_1\ln(V_2/V_1)$</li>
+<li><strong>绝热膨胀</strong>：温度降至 $T_2$</li>
+<li><strong>等温压缩</strong>（$T_2$）：与低温热源接触，放热 $Q_2 = nRT_2\ln(V_3/V_4)$</li>
+<li><strong>绝热压缩</strong>：温度升至 $T_1$，回到初态</li>
+</ol>
+<p>可证：$\dfrac{Q_1}{T_1} = \dfrac{Q_2}{T_2}$（卡诺定理的重要基础）</p>
+</div>
+
+<div class="card key-point">
+<p><strong>卡诺定理</strong>：</p>
+<ol>
+<li>在相同的高温热源和低温热源之间工作的一切可逆热机，其效率都相等，与工作物质无关</li>
+<li>在相同的高温热源和低温热源之间工作的一切不可逆热机，其效率都小于可逆热机的效率</li>
+</ol>
+</div>
+
+<!-- ==================== 核心公式 ==================== -->
+<h2>本章核心公式速查</h2>
+
+<div class="card">
+<ol>
+<li><strong>准静态过程的功</strong>：$A = -\int p\,dV$ <span class="page-ref">p149</span></li>
+<li><strong>热力学第一定律</strong>：$\Delta U = Q - A$ <span class="page-ref">p161</span></li>
+<li><strong>焓</strong>：$H = U + pV$，等压时 $\Delta H = Q_p$ <span class="page-ref">p164</span></li>
+<li><strong>迈耶公式</strong>：$C_P - C_V = R$ <span class="page-ref">p166</span></li>
+<li><strong>等容</strong>：$Q_V = nC_V\Delta T$ <span class="page-ref">p168</span></li>
+<li><strong>等压</strong>：$Q_P = nC_P\Delta T$ <span class="page-ref">p170</span></li>
+<li><strong>等温</strong>：$A = nRT\ln(V_2/V_1)$ <span class="page-ref">p174</span></li>
+<li><strong>绝热</strong>：$pV^\gamma = \text{const}$ <span class="page-ref">p176</span></li>
+<li><strong>多方过程</strong>：$pV^n = \text{const}$ <span class="page-ref">p178</span></li>
+<li><strong>热机效率</strong>：$\eta = 1 - Q_2/Q_1$ <span class="page-ref">p182</span></li>
+<li><strong>卡诺效率</strong>：$\eta_C = 1 - T_2/T_1$ <span class="page-ref">p186</span></li>
+</ol>
+</div>
+
+<!-- ==================== 习题 ==================== -->
+<h2>习题导航 <span class="page-ref">p192-200</span></h2>
+
+<div class="grid2">
+<div class="card">
+<span class="tag tag-blue">基本计算</span> 1-8题
+<p class="small">$A$、$Q$、$\Delta U$ 计算，p-V图面积</p>
+</div>
+<div class="card">
+<span class="tag tag-green">过程分析</span> 9-15题
+<p class="small">等容、等压、等温、绝热混合过程</p>
+</div>
+<div class="card">
+<span class="tag tag-orange">循环效率</span> 16-22题
+<p class="small">热机效率、卡诺循环计算</p>
+</div>
+<div class="card">
+<span class="tag tag-purple">多方过程</span> 23-26题
+<p class="small">多方指数、功热计算</p>
+</div>
+<div class="card">
+<span class="tag tag-pink">综合</span> 27-30题
+<p class="small">多种过程结合、热机设计</p>
+</div>
+<div class="card">
+<span class="tag tag-blue">概念</span> 思考题1-18题
+<p class="small">p189-191，准静态、内能、焓、卡诺定理</p>
+</div>
+</div>
+
+<div class="footer">
+笔记生成于 2026年6月14日 · 教材：李椿·章立源·钱尚武《热学》人民教育出版社
+</div>
+
+</div>
+
+</body>
+</html>

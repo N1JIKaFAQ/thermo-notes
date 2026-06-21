@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第四章 气体内的输运过程 — 热学笔记</title>
+<script>
+MathJax = {tex: {inlineMath: [['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --bg: #f8f9fa; --card: #ffffff; --accent: #2563eb;
+  --accent2: #dbeafe; --text: #1e293b; --muted: #64748b;
+  --border: #e2e8f0; --green: #059669; --orange: #ea580c;
+  --purple: #7c3aed; --pink: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+h1 {
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+.subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+h2 {
+  font-size: 1.35rem; font-weight: 600; color: var(--accent);
+  margin: 2rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent2);
+}
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.6rem; }
+.card {
+  background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem;
+  margin: 0.8rem 0; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.key-point { border-left: 4px solid var(--accent); background: var(--accent2); }
+.key-point strong { color: var(--accent); }
+.important { border-left: 4px solid var(--green); background: #ecfdf5; }
+.important strong { color: var(--green); }
+.formula-box {
+  background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem;
+  margin: 0.6rem 0; overflow-x: auto;
+}
+.formula-box .label {
+  font-size: 0.78rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.92rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--accent2); font-weight: 600; color: var(--accent); }
+ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+.tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+}
+.tag-blue { background: var(--accent2); color: var(--accent); }
+.tag-green { background: #ecfdf5; color: var(--green); }
+.tag-orange { background: #fff7ed; color: var(--orange); }
+.tag-purple { background: #f5f3ff; color: var(--purple); }
+.tag-pink { background: #fdf2f8; color: var(--pink); }
+p { margin: 0.5rem 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+.footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+.small { font-size: 0.85rem; color: var(--muted); }
+.page-ref {
+  display: inline-block; background: #eef2ff; color: var(--accent);
+  border-radius: 4px; padding: 0 0.4rem; font-size: 0.82rem; font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>第四章 气体内的输运过程</h1>
+<p class="subtitle">李椿·章立源·钱尚武《热学》 — 期末补热学笔记</p>
+
+<!-- ==================== 概述 ==================== -->
+<h2>概述 <span class="page-ref">p111</span></h2>
+<div class="card">
+<p>气体处于<strong>非平衡态</strong>时，由于内部密度、温度、流速的不均匀，将发生质量、能量、动量的定向迁移，统称为<strong>输运过程</strong>。</p>
+<p>三种基本输运过程：</p>
+<ol>
+<li><strong>扩散</strong>（密度不均匀 → 质量迁移）</li>
+<li><strong>热传导</strong>（温度不均匀 → 能量传递）</li>
+<li><strong>粘滞/内摩擦</strong>（流速不均匀 → 动量传递）</li>
+</ol>
+</div>
+
+<!-- ==================== §1 ==================== -->
+<h2>§1 平均自由程 <span class="page-ref">p111-116</span></h2>
+
+<div class="card key-point">
+<h3>基本概念 <span class="page-ref">p111-112</span></h3>
+<ul>
+<li><strong>自由程</strong>：分子在两次连续碰撞之间所通过的路程</li>
+<li><strong>平均自由程 $\bar{\lambda}$</strong>：自由程的平均值</li>
+<li><strong>碰撞频率 $\bar{Z}$</strong>：单位时间内一个分子与其他分子碰撞的平均次数</li>
+<li><strong>有效直径 $d$</strong>：分子间质心最小距离的平均值（刚球模型）</li>
+<li><strong>碰撞截面 $\sigma = \pi d^2$</strong></li>
+</ul>
+</div>
+
+<div class="card important">
+<h3>碰撞频率的推导 <span class="page-ref">p113-114</span></h3>
+<p>设分子 A 以平均相对速率 $\bar{v}_r$ 运动，其他分子静止：</p>
+<div class="formula-box">
+$$Z = \sigma \bar{v}_r n = \pi d^2 \bar{v}_r n$$
+</div>
+<p>利用麦克斯韦分布可证平均相对速率：$\bar{v}_r = \sqrt{2}\,\bar{v}$</p>
+<div class="formula-box">
+<div class="label">★ 碰撞频率公式 (4.2)</div>
+$$\bar{Z} = \sqrt{2}\,\sigma \bar{v} n = \sqrt{2}\,\pi d^2 \bar{v} n$$
+</div>
+</div>
+
+<div class="card important">
+<h3>平均自由程公式 <span class="page-ref">p114-116</span></h3>
+<p>由 $\bar{\lambda} = \bar{v}/\bar{Z}$ 得：</p>
+<div class="formula-box">
+<div class="label">★ 平均自由程 (4.3)</div>
+$$\bar{\lambda} = \frac{1}{\sqrt{2}\,\sigma n} = \frac{1}{\sqrt{2}\,\pi d^2 n}$$
+</div>
+<p>利用 $p = nkT$ 可改写为：</p>
+<div class="formula-box">
+<div class="label">★ 平均自由程与压强关系 (4.4)</div>
+$$\bar{\lambda} = \frac{kT}{\sqrt{2}\,\sigma p} = \frac{kT}{\sqrt{2}\,\pi d^2 p}$$
+</div>
+<p>结论：$T$ 恒定时 $\bar{\lambda} \propto 1/p$；$\bar{\lambda}$ 与 $\bar{v}$ 无关。</p>
+</div>
+
+<h3>分子按自由程的分布 <span class="page-ref">p121-122</span></h3>
+<div class="card">
+<p>自由程为随机变量，其分布服从指数规律：</p>
+<div class="formula-box">
+$$N = N_0 e^{-x/\bar{\lambda}} \tag{4.5}$$
+$$dN = \frac{1}{\bar{\lambda}} N_0 e^{-x/\bar{\lambda}} dx \tag{4.6}$$
+</div>
+<p>$N_0$ — 初始分子数，$N$ — 自由程超过 $x$ 的分子数</p>
+<p>可见多数分子的自由程集中在 $\bar{\lambda}$ 附近，自由程很大的分子极少。</p>
+</div>
+
+<div class="card">
+<p><strong>标准状态下的数量级</strong>：<span class="page-ref">p116</span></p>
+<ul>
+<li>$d \approx 3.5 \times 10^{-10}$ m</li>
+<li>$n \approx 2.69 \times 10^{25}$ m$^{-3}$（洛喜密脱数）</li>
+<li>$\bar{\lambda} \approx 6.9 \times 10^{-8}$ m ≈ 200 倍分子直径</li>
+<li>$\bar{Z} \approx 6.5 \times 10^{9}$ s$^{-1}$（每秒碰撞约 65 亿次）</li>
+</ul>
+</div>
+
+<!-- ==================== §2 ==================== -->
+<h2>§2 粘滞现象（内摩擦）<span class="page-ref">p117-124</span></h2>
+
+<h3>一、宏观规律 <span class="page-ref">p117-118</span></h3>
+<div class="card important">
+<p><strong>实验现象</strong>：平行流动的气体，各层流速不同 → 相邻层间有切向力作用</p>
+<div class="formula-box">
+<div class="label">★ 牛顿粘滞定律 (4.6)</div>
+$$F = \eta \frac{du}{dz} \Delta S$$
+<p>$F$ — 内摩擦力（粘滞力）<br>
+$\dfrac{du}{dz}$ — 速度梯度<br>
+$\Delta S$ — 截面面积<br>
+$\eta$ — <strong>粘滞系数</strong>（动力粘度）</p>
+</div>
+<p>物理图像：流速大的层动量传递给流速小的层</p>
+</div>
+
+<h3>二、微观推导 <span class="page-ref">p118-124</span></h3>
+<div class="card">
+<p><strong>基本假设</strong>：</p>
+<ul>
+<li>分子携带所在层的定向动量 $mu(z)$ 运动</li>
+<li>分子经过一次碰撞即"适应"新层的流速</li>
+<li>$\Delta S$ 两侧交换的分子数 = $\frac16 n \bar{v} \Delta S$（各方向等概率）</li>
+</ul>
+</div>
+
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 粘滞系数的微观表达式</div>
+$$\eta = \frac13 \rho \bar{v} \bar{\lambda}$$
+</div>
+<p>其中 $\rho = nm$ 为气体密度。</p>
+</div>
+
+<div class="card key-point">
+<h3>η 的性质 <span class="page-ref">p122-124</span></h3>
+<p>代入 $\bar{v} \propto \sqrt{T}$、$\bar{\lambda} \propto 1/p$、$\rho \propto p/T$：</p>
+<div class="formula-box">
+$$\eta = \frac13 \rho \bar{v} \bar{\lambda} \propto \sqrt{T}$$
+</div>
+<ul>
+<li>$\eta$ 与压强 $p$ <strong>无关</strong>（在通常压强范围内）</li>
+<li>$\eta$ 与 $\sqrt{T}$ 成正比（温度升高 → 粘滞增大）</li>
+<li>气体粘滞系数 $\approx 10^{-5}$ Pa·s 量级</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>苏则朗公式（更精确）<span class="page-ref">p123-124</span></h3>
+<div class="formula-box">
+$$\eta = \frac{\eta_0}{1 + C/T}$$
+</div>
+<p>$C$ 为苏则朗常数，与气体种类有关。$T$ 较高时 $C/T \ll 1$，趋近 $\eta \propto \sqrt{T}$。</p>
+</div>
+
+<!-- ==================== §3 ==================== -->
+<h2>§3 热传导现象 <span class="page-ref">p124-129</span></h2>
+
+<h3>一、宏观规律 <span class="page-ref">p124-125</span></h3>
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 傅里叶热传导定律 (4.13)</div>
+$$\frac{dQ}{dt} = -\kappa \frac{dT}{dz} \Delta S$$
+</div>
+<p>$dQ/dt$ — 热流（单位时间传递的热量）<br>
+$dT/dz$ — 温度梯度<br>
+$\Delta S$ — 截面面积<br>
+$\kappa$ — <strong>导热系数</strong></p>
+<p>负号表示热流从高温传向低温。</p>
+</div>
+
+<h3>二、微观推导 <span class="page-ref">p126-129</span></h3>
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 导热系数的微观表达式</div>
+$$\kappa = \frac13 \rho \bar{v} \bar{\lambda} c_v$$
+</div>
+<p>$c_v$ — 气体的<strong>比定容热容</strong>（单位质量）</p>
+<p>对理想气体：$\kappa = \frac13 \rho \bar{v} \bar{\lambda} \cdot \dfrac{C_V}{\mu}$</p>
+</div>
+
+<div class="card key-point">
+<h3>κ 的性质 <span class="page-ref">p128-129</span></h3>
+<ul>
+<li>与 $\eta$ 类似，$\kappa$ 也与压强 $p$ 无关（通常压强范围）</li>
+<li>$\kappa \propto \sqrt{T}$</li>
+<li>$\kappa$ 与 $c_v$ 成正比</li>
+<li>气体导热系数 $\approx 10^{-2}$ W/(m·K) 量级（远小于固体）</li>
+</ul>
+</div>
+
+<!-- ==================== §4 ==================== -->
+<h2>§4 扩散现象 <span class="page-ref">p129-134</span></h2>
+
+<h3>一、宏观规律 <span class="page-ref">p129-130</span></h3>
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 菲克扩散定律 (4.17)</div>
+$$\frac{dM}{dt} = -D \frac{d\rho}{dz} \Delta S$$
+</div>
+<p>$dM/dt$ — 质量流（单位时间通过 $\Delta S$ 的质量）<br>
+$d\rho/dz$ — 密度梯度<br>
+$D$ — <strong>扩散系数</strong></p>
+</div>
+
+<h3>二、微观推导 <span class="page-ref">p130-134</span></h3>
+<div class="card important">
+<div class="formula-box">
+<div class="label">★ 扩散系数的微观表达式</div>
+$$D = \frac13 \bar{v} \bar{\lambda}$$
+</div>
+</div>
+
+<div class="card key-point">
+<h3>D 的性质 <span class="page-ref">p132-134</span></h3>
+<ul>
+<li>$D \propto T^{3/2}/p$（因为 $\bar{v} \propto \sqrt{T}$、$\bar{\lambda} \propto T/p$）</li>
+<li>温度升高 → 扩散加快</li>
+<li>压强增大 → 扩散减慢</li>
+<li>气体扩散系数 $\approx 10^{-5}$ m²/s 量级（标准状态）</li>
+</ul>
+</div>
+
+<!-- ==================== §5 对比 ==================== -->
+<h2>§5 三种输运过程对比 <span class="page-ref">p134-138</span></h2>
+
+<div class="card">
+<table>
+<tr><th>输运过程</th><th>不均匀量</th><th>通量</th><th>宏观定律</th><th>输运系数</th><th>微观表达式</th></tr>
+<tr>
+  <td>粘滞</td>
+  <td>流速 $u(z)$</td>
+  <td>动量</td>
+  <td>$F = \eta \dfrac{du}{dz}\Delta S$</td>
+  <td>$\eta$</td>
+  <td>$\frac13 \rho \bar{v} \bar{\lambda}$</td>
+</tr>
+<tr>
+  <td>热传导</td>
+  <td>温度 $T(z)$</td>
+  <td>热量</td>
+  <td>$\dfrac{dQ}{dt} = -\kappa \dfrac{dT}{dz}\Delta S$</td>
+  <td>$\kappa$</td>
+  <td>$\frac13 \rho \bar{v} \bar{\lambda} c_v$</td>
+</tr>
+<tr>
+  <td>扩散</td>
+  <td>密度 $\rho(z)$</td>
+  <td>质量</td>
+  <td>$\dfrac{dM}{dt} = -D \dfrac{d\rho}{dz}\Delta S$</td>
+  <td>$D$</td>
+  <td>$\frac13 \bar{v} \bar{\lambda}$</td>
+</tr>
+</table>
+</div>
+
+<div class="card key-point">
+<h3>重要关系</h3>
+<div class="formula-box">
+$$\frac{\kappa}{\eta} = c_v \quad\text{或}\quad \frac{\kappa}{\eta c_v} = 1$$
+$$D = \frac{\eta}{\rho} \quad\text{(自扩散)}$$
+</div>
+<p>普朗特数 $Pr = \dfrac{\eta c_p}{\kappa} \approx 1$（对气体）</p>
+</div>
+
+<h2>§6 修正与讨论 <span class="page-ref">p134-143</span></h2>
+
+<div class="card">
+<h3>一级近似的局限性</h3>
+<ul>
+<li>$\frac13$ 因子是粗略估计（简化立方格子模型）</li>
+<li>更精确的计算（查普曼-恩斯科格理论）给出 $\frac15$ 等不同系数</li>
+<li>未考虑分子速度分布和自由程分布的影响</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>苏则朗修正</h3>
+<p>考虑分子间引力后，对粘滞系数进行修正：</p>
+<div class="formula-box">
+$$\eta = \frac13 \rho \bar{v} \bar{\lambda} \cdot \frac{1}{1 + C/T}$$
+</div>
+<p>$C$ 为苏则朗常数，不同气体有不同值。对空气 $C \approx 124$ K。</p>
+</div>
+
+<div class="card">
+<h3>与压强的关系</h3>
+<ul>
+<li><strong>通常压强</strong>：$\eta, \kappa, D \propto 1/p$ 中 $D$ 受 $p$ 影响，$\eta, \kappa$ 与 $p$ 无关</li>
+<li><strong>极低真空</strong>：$\bar{\lambda} \gg$ 容器线度，输运系数与压强成正比</li>
+<li>这一性质可用于测量真空度</li>
+</ul>
+</div>
+
+<!-- ==================== 核心公式 ==================== -->
+<h2>本章核心公式速查</h2>
+
+<div class="card">
+<ol>
+<li><strong>平均自由程</strong>：$\bar{\lambda} = \dfrac{1}{\sqrt{2}\,\pi d^2 n} = \dfrac{kT}{\sqrt{2}\,\pi d^2 p}$ <span class="page-ref">p114-115</span></li>
+<li><strong>碰撞频率</strong>：$\bar{Z} = \sqrt{2}\,\pi d^2 \bar{v} n$ <span class="page-ref">p113-114</span></li>
+<li><strong>平均速率</strong>：$\bar{v} = \sqrt{8kT/\pi m}$</li>
+<li><strong>粘滞系数</strong>：$\eta = \frac13 \rho \bar{v} \bar{\lambda}$ <span class="page-ref">p121</span></li>
+<li><strong>导热系数</strong>：$\kappa = \frac13 \rho \bar{v} \bar{\lambda} c_v$ <span class="page-ref">p128</span></li>
+<li><strong>扩散系数</strong>：$D = \frac13 \bar{v} \bar{\lambda}$ <span class="page-ref">p131</span></li>
+<li><strong>牛顿粘滞定律</strong>：$F = \eta \dfrac{du}{dz}\Delta S$ <span class="page-ref">p117</span></li>
+<li><strong>傅里叶定律</strong>：$\dfrac{dQ}{dt} = -\kappa \dfrac{dT}{dz}\Delta S$ <span class="page-ref">p124</span></li>
+<li><strong>菲克定律</strong>：$\dfrac{dM}{dt} = -D \dfrac{d\rho}{dz}\Delta S$ <span class="page-ref">p129</span></li>
+<li><strong>苏则朗修正</strong>：$\eta = \dfrac{\eta_0}{1 + C/T}$ <span class="page-ref">p123</span></li>
+</ol>
+</div>
+
+<!-- ==================== 习题 ==================== -->
+<h2>习题导航 <span class="page-ref">p141-143</span></h2>
+
+<div class="grid2">
+<div class="card">
+<span class="tag tag-blue">平均自由程</span> 1-5题
+<p class="small">$\bar{\lambda}$ 计算、与 $p,T,d$ 的关系</p>
+</div>
+<div class="card">
+<span class="tag tag-green">粘滞系数</span> 6-10题
+<p class="small">$\eta$ 计算、测量、温度依赖</p>
+</div>
+<div class="card">
+<span class="tag tag-orange">导热系数</span> 11-14题
+<p class="small">$\kappa$ 与 $\eta$ 关系、温度变化</p>
+</div>
+<div class="card">
+<span class="tag tag-purple">扩散系数</span> 15-18题
+<p class="small">$D$ 计算、自扩散</p>
+</div>
+<div class="card">
+<span class="tag tag-pink">综合</span> 19-22题
+<p class="small">三种输运对比、混合气体</p>
+</div>
+<div class="card">
+<span class="tag tag-blue">概念</span> 思考题1-16题
+<p class="small">p138-140，平均自由程、输运微观机制</p>
+</div>
+</div>
+
+<div class="footer">
+笔记生成于 2026年6月14日 · 教材：李椿·章立源·钱尚武《热学》人民教育出版社
+</div>
+
+</div>
+
+</body>
+</html>

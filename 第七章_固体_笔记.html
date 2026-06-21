@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第七章 固体 — 热学笔记</title>
+<script>
+MathJax = {tex: {inlineMath: [['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --bg: #f8f9fa; --card: #ffffff; --accent: #2563eb;
+  --accent2: #dbeafe; --text: #1e293b; --muted: #64748b;
+  --border: #e2e8f0; --green: #059669; --orange: #ea580c;
+  --purple: #7c3aed; --pink: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  padding: 2rem 1rem;
+}
+.container { max-width: 860px; margin: 0 auto; }
+h1 {
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+}
+.subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+h2 {
+  font-size: 1.35rem; font-weight: 600; color: var(--accent);
+  margin: 2rem 0 1rem; padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent2);
+}
+h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.6rem; }
+.card {
+  background: var(--card); border-radius: 12px; padding: 1.25rem 1.5rem;
+  margin: 0.8rem 0; border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.key-point { border-left: 4px solid var(--accent); background: var(--accent2); }
+.key-point strong { color: var(--accent); }
+.important { border-left: 4px solid var(--green); background: #ecfdf5; }
+.important strong { color: var(--green); }
+.formula-box {
+  background: #f1f5f9; border-radius: 8px; padding: 1rem 1.25rem;
+  margin: 0.6rem 0; overflow-x: auto;
+}
+.formula-box .label {
+  font-size: 0.78rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;
+}
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.92rem; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+th { background: var(--accent2); font-weight: 600; color: var(--accent); }
+ul, ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+li { margin: 0.3rem 0; }
+.tag {
+  display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+}
+.tag-blue { background: var(--accent2); color: var(--accent); }
+.tag-green { background: #ecfdf5; color: var(--green); }
+.tag-orange { background: #fff7ed; color: var(--orange); }
+.tag-purple { background: #f5f3ff; color: var(--purple); }
+p { margin: 0.5rem 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+.footer {
+  margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.85rem;
+}
+.small { font-size: 0.85rem; color: var(--muted); }
+.page-ref {
+  display: inline-block; background: #eef2ff; color: var(--accent);
+  border-radius: 4px; padding: 0 0.4rem; font-size: 0.82rem; font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>第七章 固体</h1>
+<p class="subtitle">李椿·章立源·钱尚武《热学》 — 期末补热学笔记</p>
+
+<!-- ==================== 概述 ==================== -->
+<h2>概述 <span class="page-ref">p259</span></h2>
+<div class="card">
+<p>固态是物质常见的凝聚态之一。固体可分为<strong>晶体</strong>和<strong>非晶体</strong>两大类。晶体内部原子（或分子）呈周期性排列。固体物理学已发展为物理学的重要分支，并扩展为<strong>凝聚态物理</strong>。</p>
+</div>
+
+<!-- ==================== §1 ==================== -->
+<h2>§1 晶体 <span class="page-ref">p259-264</span></h2>
+
+<div class="card key-point">
+<h3>基本概念 <span class="page-ref">p259-261</span></h3>
+<ul>
+<li><strong>晶体</strong>：内部原子呈周期性排列的固体（如岩盐、云母、水晶）</li>
+<li><strong>非晶体</strong>：原子无规则排列（如玻璃）</li>
+<li><strong>单晶</strong>：整个固体由单一晶格贯穿</li>
+<li><strong>多晶</strong>：由大量小晶粒（晶粒）组成</li>
+<li><strong>晶格</strong>：原子排列的周期性骨架</li>
+<li><strong>基元</strong>：重复排列的基本结构单元</li>
+<li><strong>晶格常数</strong>：晶胞的边长</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>晶系与布拉伐格子 <span class="page-ref">p261-264</span></h3>
+<p>晶体按对称性分为七大晶系，对应十四种布拉伐格子：</p>
+<table>
+<tr><th>晶系</th><th>轴关系</th><th>夹角</th></tr>
+<tr><td>立方</td><td>$a=b=c$</td><td>$\alpha=\beta=\gamma=90^\circ$</td></tr>
+<tr><td>四方</td><td>$a=b\neq c$</td><td>$\alpha=\beta=\gamma=90^\circ$</td></tr>
+<tr><td>正交</td><td>$a\neq b\neq c$</td><td>$\alpha=\beta=\gamma=90^\circ$</td></tr>
+<tr><td>六方</td><td>$a=b\neq c$</td><td>$\alpha=\beta=90^\circ,\gamma=120^\circ$</td></tr>
+<tr><td>菱方</td><td>$a=b=c$</td><td>$\alpha=\beta=\gamma\neq90^\circ$</td></tr>
+<tr><td>单斜</td><td>$a\neq b\neq c$</td><td>$\alpha=\gamma=90^\circ,\beta\neq90^\circ$</td></tr>
+<tr><td>三斜</td><td>$a\neq b\neq c$</td><td>$\alpha\neq\beta\neq\gamma\neq90^\circ$</td></tr>
+</table>
+</div>
+
+<!-- ==================== §2 ==================== -->
+<h2>§2 晶体的结合 <span class="page-ref">p264-269</span></h2>
+
+<div class="card">
+<h3>结合键类型 <span class="page-ref">p264-267</span></h3>
+<table>
+<tr><th>类型</th><th>特点</th><th>实例</th></tr>
+<tr><td><strong>离子键</strong></td><td>正负离子间库仑引力，强</td><td>NaCl, KCl</td></tr>
+<tr><td><strong>共价键</strong></td><td>共享电子对，方向性强</td><td>金刚石, Si, Ge</td></tr>
+<tr><td><strong>金属键</strong></td><td>自由电子胶合正离子，延展性好</td><td>Fe, Cu, Al</td></tr>
+<tr><td><strong>分子键（范德瓦耳斯）</strong></td><td>分子间弱引力</td><td>惰性气体晶体</td></tr>
+<tr><td><strong>氢键</strong></td><td>氢原子为桥梁，有方向性</td><td>冰, DNA</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>结合能 <span class="page-ref">p267-269</span></h3>
+<p>晶体的结合能等于将晶体分解为自由原子所需的最小能量。</p>
+<div class="formula-box">
+$$U(r) = -\frac{A}{r^m} + \frac{B}{r^n}$$
+</div>
+<p>第一项为引力势能，第二项为斥力势能。</p>
+</div>
+
+<!-- ==================== §3 ==================== -->
+<h2>§3 晶体中的缺陷 <span class="page-ref">p269-274</span></h2>
+
+<div class="card">
+<h3>缺陷类型 <span class="page-ref">p269-272</span></h3>
+<ul>
+<li><strong>点缺陷</strong>：空位、间隙原子、杂质原子、弗仑克尔缺陷（空位+间隙原子对）</li>
+<li><strong>线缺陷（位错）</strong>：刃型位错、螺型位错</li>
+<li><strong>面缺陷</strong>：晶界、层错</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>热缺陷数目 <span class="page-ref">p272-274</span></h3>
+<p>热平衡时的空位数目：</p>
+<div class="formula-box">
+$$n = N e^{-E/(kT)}$$
+</div>
+<p>$N$ — 总原子数；$E$ — 形成一个空位所需能量</p>
+</div>
+
+<!-- ==================== §4 ==================== -->
+<h2>§4 固体的热容 <span class="page-ref">p274-280</span></h2>
+
+<div class="card important">
+<h3>杜隆-珀蒂定律 <span class="page-ref">p274</span></h3>
+<p>在充分高的温度下，大多数固体元素的摩尔热容趋于常数：</p>
+<div class="formula-box">
+$$C_V \approx 3R \approx 24.94\; \text{J/(mol·K)}$$
+</div>
+</div>
+
+<div class="card">
+<h3>爱因斯坦模型 <span class="page-ref">p275-277</span></h3>
+<p>假设所有原子以相同频率 $\nu_E$ 振动：</p>
+<div class="formula-box">
+$$C_V = 3R\left(\frac{\theta_E}{T}\right)^2 \frac{e^{\theta_E/T}}{(e^{\theta_E/T}-1)^2}$$
+</div>
+<p>其中 $\theta_E = h\nu_E/k$ 为爱因斯坦特征温度。</p>
+<ul>
+<li>$T \gg \theta_E$：$C_V \to 3R$（与杜隆-珀蒂一致）</li>
+<li>$T \to 0$：$C_V \propto e^{-\theta_E/T}$（下降过快，与实验偏差）</li>
+</ul>
+</div>
+
+<div class="card important">
+<h3>德拜模型 <span class="page-ref">p277-280</span></h3>
+<p>考虑原子振动频谱，引入德拜特征温度 $\theta_D$：</p>
+<div class="formula-box">
+$$C_V = 9R\left(\frac{T}{\theta_D}\right)^3 \int_0^{\theta_D/T} \frac{x^4 e^x}{(e^x-1)^2}\,dx$$
+</div>
+<p><strong>高温</strong>（$T \gg \theta_D$）：$C_V \to 3R$</p>
+<p><strong>低温</strong>（$T \ll \theta_D$）：<strong>德拜 $T^3$ 律</strong></p>
+<div class="formula-box">
+$$C_V = \frac{12\pi^4}{5} R\left(\frac{T}{\theta_D}\right)^3 \propto T^3$$
+</div>
+<p>德拜模型在低温下与实验吻合更好。常见 $\theta_D$：Al 428K, Cu 343K, Fe 470K, NaCl 321K。</p>
+</div>
+
+<!-- ==================== §5 ==================== -->
+<h2>§5 固体的热膨胀 <span class="page-ref">p280-284</span></h2>
+
+<div class="card">
+<div class="formula-box">
+<div class="label">线膨胀系数</div>
+$$\alpha_l = \frac{1}{l}\frac{dl}{dT}$$
+
+<div class="label">体膨胀系数</div>
+$$\alpha_V = \frac{1}{V}\frac{dV}{dT} \approx 3\alpha_l$$
+</div>
+<p>固体的热膨胀源于原子间非简谐振动（势能曲线不对称）。</p>
+</div>
+
+<!-- ==================== 核心公式 ==================== -->
+<h2>本章核心公式速查</h2>
+
+<div class="card">
+<ol>
+<li><strong>杜隆-珀蒂定律</strong>：$C_V \approx 3R$ <span class="page-ref">p274</span></li>
+<li><strong>爱因斯坦热容</strong>：$C_V = 3R\left(\frac{\theta_E}{T}\right)^2 \frac{e^{\theta_E/T}}{(e^{\theta_E/T}-1)^2}$ <span class="page-ref">p276</span></li>
+<li><strong>德拜热容（低温）</strong>：$C_V \propto T^3$ <span class="page-ref">p280</span></li>
+<li><strong>热缺陷数</strong>：$n = N e^{-E/(kT)}$ <span class="page-ref">p273</span></li>
+<li><strong>线膨胀系数</strong>：$\alpha_l = \dfrac{1}{l}\dfrac{dl}{dT}$ <span class="page-ref">p281</span></li>
+<li><strong>体膨胀系数</strong>：$\alpha_V \approx 3\alpha_l$ <span class="page-ref">p282</span></li>
+<li><strong>结合能势函数</strong>：$U(r) = -A/r^m + B/r^n$ <span class="page-ref">p268</span></li>
+</ol>
+</div>
+
+<!-- ==================== 习题 ==================== -->
+<h2>习题导航 <span class="page-ref">p285-290</span></h2>
+
+<div class="grid2">
+<div class="card">
+<span class="tag tag-blue">晶格常数</span> 1-5题
+<p class="small">晶胞参数、密度、原子间距</p>
+</div>
+<div class="card">
+<span class="tag tag-green">结合能</span> 6-8题
+<p class="small">势能曲线、结合能计算</p>
+</div>
+<div class="card">
+<span class="tag tag-orange">热容</span> 9-14题
+<p class="small">杜隆-珀蒂、爱因斯坦、德拜模型</p>
+</div>
+<div class="card">
+<span class="tag tag-purple">热膨胀</span> 15-18题
+<p class="small">线/体膨胀系数计算</p>
+</div>
+</div>
+
+<div class="footer">
+笔记生成于 2026年6月14日 · 教材：李椿·章立源·钱尚武《热学》人民教育出版社
+</div>
+
+</div>
+
+</body>
+</html>
